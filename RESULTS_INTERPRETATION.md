@@ -1,47 +1,81 @@
-# Results Interpretation: Project C (frozen v2 system)
+# Results Interpretation
 
-**Status: FROZEN (2026-11-09).** Interpretation only. Nothing was run or recomputed. Every number comes from the validated, frozen outputs:
-- tables T1–T6: `analysis/tables/`;
-- figures F1–F5: `analysis/figures/`;
-- statistics: `analysis/stats/comparisons.json`.
+This document explains what our experiments found, organised around the project's three research questions. It is written so that someone new to the repository can follow it. Every number comes from the frozen results in [`analysis/`](analysis/): tables T1–T6, figures F1–F5 and the statistics in `analysis/stats/comparisons.json`. Each number has been checked against those files automatically (`analysis/verify_interpretation.py`).
 
-The DEV-24 appendix (T7) isn't used here.
-
-**How to read this document**
-- **Primary metric:** ID Recall of the final evidence set (seeds plus expansions), macro-averaged over questions. Text-equivalent Recall is mentioned only as a diagnostic.
-- **Paired comparisons:** Δ = SLM (M5) − comparator, with a 95% paired-bootstrap CI and win/tie/loss counts (W = M5 higher). p is the Holm-adjusted exact sign-test p within the preregistered family.
-- **No single significance criterion.** Per the frozen reporting decision, the paired-bootstrap CI and the Holm-adjusted sign-test p are reported side by side. Where they point the same way, both are stated. Where they disagree, the disagreement is stated explicitly and no verdict is assigned.
-- **Descriptive:** everything not covered by a preregistered test, including all cost comparisons, cross-budget changes and category or hop breakdowns.
-- **Populations:**
-  - TEST-1704 (n=1,704) is the primary population.
-  - NEW-1654 (n=1,654) is the robustness set that had never been scored before.
-  - SUB-300 (n=300) is used for the budget sweep and ablations. It resolves paired differences of roughly ≥ 0.04 (EXPERIMENT_PLAN §0), so smaller SUB-300 differences are inconclusive, not evidence of no effect.
-- **Methods:**
-  - M0: seeds only.
-  - M1: flat retrieval, top-(3+b) of the seed ranking, no graph.
-  - M2: original SAGE one-shot expansion (faithful).
-  - M3: random traversal (mean of 3 seeds).
-  - M4: SAGE-score greedy traversal.
-  - M5: the frozen SLM controller.
-  - A1: SLM without history. A2: SLM without the budget value. A3: SLM without adaptive stopping.
-- **Shared components:** every graph method uses the same reconstructed document graph, the same Fusion-A top-3 seeds, the same SAGE pre-filter (top-20) and the same duplicate-text handling. The first-step candidate list is identical for M3, M4, M5 and the ablations (verified on every question).
+**Status:** frozen interpretation (2026-11-09; restructured for readability 2026-11-12 with the same findings and numbers). No new analysis was run for this document.
 
 ---
 
-## RQ1: Training-free traversal effectiveness
+## At a glance
 
-**Question.** Can a pretrained SLM (Qwen3-4B-Instruct, 4-bit, no task-specific training) select relevant neighboring chunks well enough to beat non-learned traversal and retrieval baselines?
+| Research question | Short answer |
+|---|---|
+| **RQ1:** Can an untrained SLM pick useful passages to explore? | **Yes, modestly.** With a budget of 4, it beats every baseline on both test sets. The gain over the strongest baseline, flat search, is small (+0.027 recall). |
+| **RQ2:** Does it know when to stop, and does it find multi-hop evidence? | **Partly.** Stopping saves about 7% of expansions and 9% of tokens, at a small recall cost (−0.0024). It isn't a precise "I have enough" signal. It does find more multi-hop gold than the score-based rule. |
+| **RQ3:** Does it work well under a fixed budget? | **Per passage yes, per second no.** It sits on the recall-versus-expansion Pareto frontier at every budget tested, but its inference cost makes it much slower in wall-clock time. Hiding the budget value from the model made no measurable difference. |
 
-**Evidence used:**
-- **T1:** main results, B=4, TEST-1704 and NEW-1654.
-- **T2:** matched-expansion comparison.
-- **T5c:** recall by post-hoc category.
-- **F4:** pre-filter rank of the SLM's selections.
-- **F5:** per-question outcome, M5 vs M4.
+---
 
-**Main quantitative findings (B=4)**
+## Before you read: terms used below
 
-| SLM vs | Δ, TEST-1704 [95% CI] | W/T/L | Holm p | Δ, NEW-1654 [95% CI] | Holm p |
+**Methods.** All of them share the same graph, the same three seed passages and the same candidate lists.
+
+| Code | Method | In one line |
+|---|---|---|
+| **M5** | **SLM controller (ours)** | Qwen3-4B chooses which candidate to explore next, or stops |
+| M4 | SAGE-score greedy | Always explores the top-scored candidate |
+| M3 | Random | Explores a random candidate from the top 20 (averaged over 3 random seeds) |
+| M2 | Original SAGE expansion | Adds the best-scoring neighbours of the seeds in one shot |
+| M1 | Flat retrieval | Ignores the graph; takes more results from the initial search |
+| M0 | Seeds only | No expansion |
+| A1 / A2 / A3 | Ablations of M5 | No history / no budget value in the prompt / no ability to stop |
+
+**Question sets**
+
+| Set | Size | Role |
+|---|---|---|
+| **TEST-1704** | 1,704 questions | Main evaluation set |
+| **NEW-1654** | 1,654 questions | The part of TEST-1704 that had never been scored before; a robustness check |
+| **SUB-300** | 300 questions | A fixed random subset, used for the budget sweep and the ablations |
+
+On SUB-300, differences smaller than about 0.04 can't be resolved: they're inconclusive, not evidence of no effect.
+
+**Metrics and statistics**
+- **ID Recall** (the main metric) is the fraction of a question's gold passages that end up in the retrieved evidence, averaged over questions. *Text Recall* also counts exact-text duplicates and is used only as a cross-check.
+- **Budget (B)** is the maximum number of passages the method may add beyond the 3 seeds.
+- **Δ** is SLM recall minus the other method's recall, computed on the same questions. A positive Δ means the SLM did better.
+- **95% CI** is the bootstrap confidence interval for Δ. If it doesn't include 0, the difference is consistently in one direction.
+- **W/T/L** counts the questions where the SLM did better, the same, or worse.
+- **Holm p** is the sign-test p-value, corrected for multiple comparisons.
+- **No single test decides.** We report the CI and Holm p side by side and don't use a single significance cut-off. When they agree, we say so; when they disagree, we say that too.
+- **"Descriptive"** marks a result with no formal test, such as costs, changes across budgets, and category or hop breakdowns.
+
+---
+
+## RQ1: Can a training-free SLM pick useful passages?
+
+> Can a pretrained SLM (Qwen3-4B-Instruct, 4-bit, no task-specific training) select relevant neighbouring passages well enough to beat non-learned traversal and retrieval baselines?
+
+*Sources: T1 (main results), T2 (matched expansions), T5c (recall by category), F4 (rank of chosen candidate), F5 (per-question outcome vs M4).*
+
+### What we found
+
+With a budget of 4 on TEST-1704, the SLM had the highest recall of any method:
+
+| Method | ID Recall |
+|---|---|
+| **M5 SLM** | **0.3609** |
+| M1 flat retrieval | 0.3341 |
+| M4 SAGE-score greedy | 0.3207 |
+| M2 SAGE one-shot | 0.3109 |
+| M3 random | 0.2706 |
+| M0 seeds only | 0.2409 |
+
+The results on NEW-1654 match these to within 0.0006 for every method.
+
+Paired comparisons (SLM minus each baseline):
+
+| SLM vs | Δ on TEST-1704 [95% CI] | W/T/L | Holm p | Δ on NEW-1654 [95% CI] | Holm p |
 |---|---|---|---|---|---|
 | M0 seeds only | +0.1200 [+0.1051, +0.1350] | 235/1469/0 | <0.0001 | +0.1201 [+0.1052, +0.1353] | <0.0001 |
 | M1 flat retrieval | +0.0268 [+0.0102, +0.0429] | 153/1446/105 | 0.0034 | +0.0262 [+0.0100, +0.0430] | 0.0050 |
@@ -49,136 +83,152 @@ The DEV-24 appendix (T7) isn't used here.
 | M3 random | +0.0902 [+0.0763, +0.1039] | 234/1404/66 | <0.0001 | +0.0904 [+0.0765, +0.1043] | <0.0001 |
 | M4 SAGE-score greedy | +0.0402 [+0.0275, +0.0528] | 116/1543/45 | <0.0001 | +0.0407 [+0.0282, +0.0534] | <0.0001 |
 
-- **Absolute ID Recall on TEST-1704:**
-  - M5 0.3609 [0.3388, 0.3829];
-  - M1 0.3341, M4 0.3207, M2 0.3109, M3 0.2706, M0 0.2409.
+- **Equal number of expansions (T2).** Each baseline was also given exactly as many expansions as the SLM used on each question. The gaps then widen slightly on TEST-1704: +0.0322 vs M1, +0.0533 vs M2, +0.0911 vs M3, +0.0445 vs M4. Every Holm p is ≤ 0.0002 on both sets.
+- **Cross-check:** Text Recall moves the same way (0.3819 for M5 vs 0.3349 for M4).
 
-  NEW-1654 matches to within 0.0006 for every method.
-- **Matched expansions (T2):** when each baseline gets exactly the SLM's per-question number of expansions, the gaps widen slightly: vs M1 +0.0322, M2 +0.0533, M3 +0.0911, M4 +0.0445 on TEST-1704. All four have Holm p ≤ 0.0002 on both populations.
-- **Diagnostic:** text-equivalent Recall moves the same way (M5 0.3819 vs M4 0.3349).
+### What the statistics say
 
-**Statistical evidence vs descriptive results**
-- **Tested comparisons:** M5 has higher recall than every baseline at B=4 on TEST-1704 and on NEW-1654, at full budget and with matched expansions. In all 18 comparisons, the two tests agree: every CI excludes 0 and every Holm-adjusted p is < 0.01.
-- **Descriptive** (no preregistered test):
-  - **Gains by category (T5c, F5):**
+The two tests **agree in all 18 comparisons**: both sets, full budget and matched expansions. Every CI excludes 0 and every Holm p is < 0.01.
 
-    | Category | M5 recall | M4 recall | W/T/L vs M4 |
-    |---|---|---|---|
-    | Gold reachable in top-20 (n=304) | 0.5313 | 0.3838 | 76/200/28 |
-    | Not reachable in 1 hop | | | 32/859/16 |
+Two descriptive breakdowns (no formal test):
 
-  - **Rank choices (F4):** the SLM picks the pre-filter's rank-1 candidate in only 36–42% of explorations, depending on the step.
+| Where the gold is | M5 recall | M4 recall | W/T/L vs M4 |
+|---|---|---|---|
+| Gold reachable in the top-20 candidates (304 questions) | 0.5313 | 0.3838 | 76/200/28 |
+| Gold not reachable within one hop | | | 32/859/16 |
 
-**What this means for the proposed method**
-- A training-free SLM, choosing from the same candidate list the SAGE score ranks, picks neighbors that yield higher ID Recall than SAGE-score greedy, SAGE's original one-shot expansion, random traversal and flat retrieval.
-- Because candidates and seeds are identical, the gain over M4 comes from the selection decisions themselves.
-- The SLM regularly departs from the pre-filter's top choice, and on net those departures help: more wins than losses against M4 overall (116 vs 45) and in the main category (76 vs 28).
-- The effect is the same on the set that had never been scored before, so it isn't an artifact of the development or pilot questions.
+The SLM picks the pre-filter's rank-1 candidate in only 36–42% of explorations, depending on the step (F4).
 
-**Most important limitation**
-- **Small absolute gains, mostly ties:** the improvement is consistent but modest, and against the strongest baseline it is small. M5 beats flat retrieval by only +0.027. Most questions are ties: 1,543 of 1,704 against M4.
-- **Overall recall is low (0.36), and graph reachability is the main reason** (T5c):
-  - 907 of 1,704 TEST questions have no remaining gold within one hop of the seeds;
-  - in that category every method's recall is ≤ 0.10.
-- **Narrow evidence base:** one dataset (OTT-QA documents only), a reconstructed graph, one SLM and one prompt.
+### What it means
+
+Given exactly the candidates the SAGE score ranks, the SLM makes better choices than taking the top-ranked one. Seeds and candidates are identical across methods, so the gain over M4 comes from the selection decisions themselves.
+
+The SLM regularly departs from the pre-filter's top choice, and on balance those departures help:
+- more wins than losses against M4 overall (116 vs 45);
+- more wins than losses in the category where gold is within reach (76 vs 28).
+
+The result holds on the set that had never been scored before, so it isn't an artifact of the development questions.
+
+### Caveats
+- **Modest gains, mostly ties.** The improvement is consistent but small: only +0.027 over flat retrieval, and 1,543 of 1,704 questions tie against M4.
+- **Recall is low overall (0.36), mainly because of graph reachability.** In 907 of the 1,704 questions, none of the remaining gold is within one hop of the seeds, and in that category every method's recall is ≤ 0.10.
+- **Narrow evidence base:** one dataset (OTT-QA documents), a reconstructed graph, one SLM and one prompt.
 
 ---
 
-## RQ2: Adaptive multi-hop retrieval and stopping
+## RQ2: Does the SLM know when to stop, and does it go multi-hop?
 
-**Question.** Can the SLM tell when more graph exploration is needed and when it already has enough evidence, and does it make genuine multi-hop discoveries?
+> Can the SLM tell when more exploration is needed and when it already has enough evidence? Does it make genuine multi-hop discoveries?
 
-**Evidence used:**
-- **T4:** M5 vs A3 (no adaptive stopping) and M5 vs A1 (no history), plus the stopped-questions breakdown.
-- **T5a / T5b:** stopping behavior, and gold by hop depth with wasted expansions.
-- **T6:** controller reliability.
-- **F3:** gold by hop depth, M4 vs M5.
+*Sources: T4 (ablations), T5a/T5b (stopping and hop depth), T6 (reliability), F3 (gold by hop depth).*
 
-**Main quantitative findings**
+### What we found
 
-*Effect of adaptive stopping (M5 − A3):*
+**Stopping.** We compared the SLM with A3, an identical controller that isn't allowed to stop. The two differ only on the questions where the SLM chose to stop, so stopping can lose recall but never gain it.
 
-| Population | B | Δ [95% CI] | W/T/L | p |
+| Set | Budget | Δ (SLM − no-stop) [95% CI] | W/T/L | p |
 |---|---|---|---|---|
 | TEST-1704 | 4 | −0.0024 [−0.0044, −0.0008] | 0/1695/9 | Holm 0.0273 |
 | SUB-300 | 8 | −0.0100 [−0.0204, −0.0021] | 0/294/6 | Holm 0.1875 (raw 0.0312) |
 | NEW-1654 (supplementary) | 4 | −0.0024 [−0.0046, −0.0008] | 0/1645/9 | raw 0.0039 |
 | SUB-300 (supplementary) | 4 | −0.0069 [−0.0158, −0.0008] | 0/296/4 | raw 0.1250 |
 
-- **Stopping can only cost recall here, never add it.** A3 is identical to M5 except on the questions where M5 stopped.
-- **Restricted to the stopped questions:** Δ = −0.0214 on 187 questions (TEST-1704, B=4) and −0.0501 on 60 questions (SUB-300, B=8). On 178 of the 187 TEST-1704 stops, continuing to the full budget found no additional gold.
-- **What stopping saves (TEST-1704, B=4, descriptive), M5 vs A3:**
+What stopping bought (TEST-1704, budget 4, descriptive):
 
-  | | M5 | A3 |
-  |---|---|---|
-  | Expansions per question | 3.71 | 4.00 |
-  | SLM calls | 3.82 | 4.20 |
-  | Tokens | 7,976 | 8,790 |
-  | Latency | 36.5 s | 39.6 s |
+| | SLM (can stop) | No-stop (A3) |
+|---|---|---|
+| Expansions per question | 3.71 | 4.00 |
+| SLM calls | 3.82 | 4.20 |
+| Tokens | 7,976 | 8,790 |
+| Latency | 36.5 s | 39.6 s |
 
-- **Stop quality (T5a, TEST-1704):** the SLM stopped on 187 of 1,704 questions (11.0%).
-  - 83 of those stops came at step 0, before any expansion.
-  - On 74 of the 187 stops, all gold was already in the evidence (checked post hoc with gold).
-- **Stop rate by budget (SUB-300, descriptive):** 8.3% at B=1, 6.3% at B=2, 15.3% at B=4, 20.0% at B=8.
+How the stops played out (TEST-1704, budget 4):
+- **How often:** the SLM stopped on 187 of 1,704 questions (11.0%); 83 of those stops came before any expansion.
+- **What continuing would have found:** on 178 of the 187 stops, continuing to the full budget found no more gold. Restricted to the stopped questions, Δ = −0.0214 (and −0.0501 on the 60 stopped questions at budget 8 on SUB-300).
+- **Whether the evidence was complete:** on 74 of the 187 stops, all gold was already in the evidence (checked afterwards against the gold labels).
+- **By budget (SUB-300, descriptive):** the stop rate is 8.3% at B=1, 6.3% at B=2, 15.3% at B=4 and 20.0% at B=8, so it is highest at the largest budget.
 
-*Effect of traversal history (M5 − A1, SUB-300, B=4):* Δ = +0.0011 [−0.0133, +0.0167], W/T/L 3/293/4, Holm p = 1.0000. A1 stopped less often (9.0% vs 15.3%, descriptive).
+**History.** Removing the traversal history (A1; SUB-300, budget 4) gave Δ = +0.0011 [−0.0133, +0.0167], W/T/L 3/293/4, Holm p = 1.0000. Without history, the model stopped less often: 9.0% vs 15.3% (descriptive).
 
-*Multi-hop discovery (TEST-1704, B=4, descriptive; T5b, F3):*
+**Multi-hop discovery** (TEST-1704, budget 4, descriptive):
 
-| Method | Gold found at hop 1 | Gold found at hop 2+ |
+| Method | Gold found 1 hop from the seeds | Gold found 2+ hops away |
 |---|---|---|
 | M5 SLM | 190 | 55 |
 | M4 SAGE-score greedy | 135 | 40 |
 | M3 random (mean) | 62.3 | 7.7 |
 
-- Hop 0 (gold already in the seeds) is 478 for every method.
-- **Wasted expansions** (taken after the last gold found): M5 3.42, M4 3.77, A3 3.70.
+- Gold already in the seeds (hop 0) is 478 for every method.
+- **Wasted expansions** (taken after the last gold was found): M5 3.42, M4 3.77, A3 3.70.
 
-*Reliability (T6):* 0 invalid first attempts, 0 retries and 0 controller errors in every SLM run.
+**Reliability (T6).** Every SLM run had 0 invalid first attempts, 0 retries and 0 controller errors.
 
-**Statistical evidence vs descriptive results**
-- **Stopping at B=4 (TEST-1704):** the two tests agree. Disabling STOP (A3) gives slightly *higher* recall than M5: Δ = −0.0024, CI [−0.0044, −0.0008] excludes 0, Holm p = 0.0273. Both indicate that adaptive stopping costs a small amount of recall at the primary setting.
-- **Stopping at B=8 (SUB-300):** the two tests disagree. The CI excludes 0 (−0.0100 [−0.0204, −0.0021]), but the Holm-adjusted sign-test p is 0.1875 (raw 0.0312). The direction matches B=4; the evidence at this budget is not consistent across the two tests.
-- **History (A1):** the two tests agree in finding no difference: the CI includes 0 and Holm p = 1.0000. With SUB-300's resolution of ~0.04, this is inconclusive, not evidence that history is useless.
-- **Descriptive only:**
-  - the cost savings from stopping;
-  - the stop-quality counts;
-  - the stop-rate pattern across budgets;
-  - all hop-depth and wasted-expansion comparisons.
+### What the statistics say
+- **Stopping at budget 4 (TEST-1704): the tests agree.**
+  - The CI [−0.0044, −0.0008] excludes 0 and Holm p = 0.0273.
+  - Both indicate that adaptive stopping costs a small amount of recall at the main setting.
+- **Stopping at budget 8 (SUB-300): the tests disagree.**
+  - The CI excludes 0 (−0.0100 [−0.0204, −0.0021]), but the Holm-adjusted sign-test p is 0.1875 (raw 0.0312).
+  - The direction matches budget 4, but the evidence at this budget isn't consistent across the two tests.
+- **History: the tests agree in finding no difference.**
+  - The CI includes 0 and Holm p = 1.0000.
+  - With SUB-300's resolution of about 0.04, this is inconclusive, not evidence that history is useless.
+- **Descriptive only:** the cost savings, the stop-quality counts, the stop rate by budget, and all hop-depth and wasted-expansion comparisons.
 
-**What this means for the proposed method**
-- **Stopping is conservative and cheap, but its benefit is efficiency, not accuracy.** The SLM stops on about 11% of questions at B=4. In 178 of 187 cases, exploring to the full budget would have found nothing more, and stopping saves about 7% of expansions and about 9% of tokens. But it gives up recall on 9 questions and never gains any, so it is not free.
-- **It isn't a precise "evidence is sufficient" signal.** Only 74 of 187 stops (40%) happened when all gold was already present. Of the other 113 stops, 104 were on questions where continuing to the full budget found no additional gold. Stopping there was harmless, but not because the evidence was complete.
-- **Multi-hop discovery happens.** The SLM retrieves more gold at hop 2+ than SAGE-score greedy (55 vs 40), so it does follow chains beyond the seeds' direct neighbors. This is descriptive and isn't a tested effect.
+### What it means
+- **Stopping is conservative and cheap, but it buys efficiency, not accuracy.**
+  - The SLM stops on about 11% of questions, saving about 7% of expansions and about 9% of tokens.
+  - In 178 of 187 cases, continuing would have found nothing more.
+  - It still gives up recall on 9 questions and never gains any, so it isn't free.
+- **It isn't a precise "evidence is sufficient" signal.**
+  - Only 74 of 187 stops (40%) happened with all gold already present.
+  - Of the other 113 stops, 104 were on questions where continuing to the full budget found no more gold. Stopping there was harmless, but not because the evidence was complete.
+- **Multi-hop discovery happens.** The SLM retrieves more gold two or more hops away than SAGE-score greedy (55 vs 40), so it does follow chains beyond the seeds' direct neighbours. This is descriptive, not a tested effect.
 - **No difference from removing history was detected** at this sample size.
-- **The interface is robust.** No invalid outputs in thousands of calls means the controller is practical to run.
+- **The interface is robust.** No invalid outputs across thousands of calls makes the controller practical to run.
 
-**Most important limitation**
-- **Weak test of stopping:**
-  - Stopping is assessed only against a forced-continuation ablation, and only about 11–20% of questions stop, so most of each comparison is ties.
-  - "All gold already in evidence" is a post-hoc gold-based diagnostic, and the step-0 stops weren't cross-tabulated with it (not planned).
-  - The B=8 stopping result and the history ablation rest on SUB-300, which can't resolve effects under about 0.04.
-- **Hop-depth caveats:**
-  - The hop-depth comparisons are counts without tests.
-  - For flat retrieval (M1), "hop 2+" also includes passages with no graph connection, so M1's hop numbers aren't comparable to the traversal methods'.
+### Caveats
+- **Stopping is weakly tested:**
+  - It's compared only against a forced-continuation ablation, and just 11–20% of questions stop, so most of each comparison is ties.
+  - "All gold already in evidence" is an after-the-fact diagnostic, and the stops before any expansion weren't cross-tabulated with it (not planned).
+  - The budget-8 stopping result and the history ablation rest on SUB-300, which can't resolve effects under about 0.04.
+- **The hop-depth comparisons are counts without tests.** For flat retrieval (M1), "2+ hops" also includes passages with no graph connection, so its hop numbers aren't comparable to the traversal methods'.
 
 ---
 
-## RQ3: Budget-aware retrieval
+## RQ3: How does the SLM do under a fixed budget?
 
-**Question.** Under a fixed graph-expansion budget, does SLM-controlled traversal maintain effectiveness while limiting unnecessary exploration and inference cost?
+> Under a fixed budget of graph expansions, does SLM-controlled traversal keep its effectiveness while limiting unnecessary exploration and inference cost?
 
-**Evidence used:**
-- **T3a:** SUB-300, all methods at B = 1, 2, 4, 8, with paired tests per budget.
-- **T3b:** TEST-1704 baselines across budgets, descriptive.
-- **T3c:** the SLM across budgets, descriptive.
-- **T4:** M5 vs A2 (no budget input).
-- **F1:** recall vs B. **F2:** recall vs cost, with Pareto frontiers.
-- **T1** for B=4 on TEST-1704.
+*Sources: T3a/T3b/T3c (budget sweep), T4 (no-budget-input ablation), F1 (recall vs budget), F2 (recall vs cost), T1 (budget 4 on TEST-1704).*
 
-**Main quantitative findings**
+### What we found
 
-*M5 vs baselines at each budget, SUB-300 (Δ [95% CI], Holm p):*
+**Recall keeps rising with budget** (SUB-300, descriptive):
+
+| Budget B | SLM ID Recall | Expansions per question | Share of budget used | Tokens | Latency |
+|---|---|---|---|---|---|
+| 1 | 0.2820 | 0.92 | 0.92 | 1,918 | 7.7 s |
+| 2 | 0.2970 | 1.88 | 0.94 | 3,850 | 15.7 s |
+| 4 | 0.3437 | 3.61 | 0.90 | 7,875 | 36.2 s |
+| 8 | 0.3770 | 7.00 | 0.88 | 16,508 | 77.1 s |
+
+Recall goes up at every step (+0.0150, +0.0467, +0.0333), while tokens and latency roughly double with each doubling of the budget.
+
+**SLM vs each baseline at the same budget** (SUB-300), summarised:
+
+| Compared with | What the two tests show |
+|---|---|
+| M0 seeds only | Agree at every budget: CI excludes 0, Holm p < 0.0001 |
+| M2 SAGE one-shot | Agree at B = 1, 2, 4. Disagree at B = 8 (CI excludes 0; Holm p 0.0826) |
+| M3 random | Agree at B = 1, 4, 8. Disagree at B = 2 (CI excludes 0; Holm p 0.0729) |
+| M4 SAGE-score greedy | Agree at B = 1, 4. Disagree at B = 2 (Holm p 0.1846) and B = 8 (Holm p 0.2204; CI lower bound +0.0003) |
+| M1 flat retrieval | Both find no difference at any budget: CI includes 0, Holm p ≥ 0.1686; level at B = 8 (+0.0006) |
+
+Where both tests agree on a positive difference, every CI excludes 0 and every Holm p is ≤ 0.0234. On TEST-1704 at budget 4, the two tests agree for all five baselines (see RQ1).
+
+<details>
+<summary>Full per-budget comparison table (Δ [95% CI], Holm p)</summary>
 
 | B | vs M0 seeds | vs M1 flat | vs M2 SAGE one-shot | vs M3 random | vs M4 SAGE-score greedy |
 |---|---|---|---|---|---|
@@ -187,72 +237,50 @@ The DEV-24 appendix (T7) isn't used here.
 | 4 | +0.1173 [+0.0833, +0.1540], <0.0001 | +0.0223 [−0.0128, +0.0585], 0.3368 | +0.0531 [+0.0217, +0.0859], 0.0178 | +0.0885 [+0.0565, +0.1230], 0.0025 | +0.0476 [+0.0183, +0.0783], 0.0178 |
 | 8 | +0.1507 [+0.1123, +0.1913], <0.0001 | +0.0006 [−0.0393, +0.0404], 0.8804 | +0.0518 [+0.0143, +0.0907], 0.0826 | +0.0919 [+0.0602, +0.1253], 0.0002 | +0.0329 [+0.0003, +0.0674], 0.2204 |
 
-*The SLM across budgets (SUB-300, T3c, descriptive):*
+</details>
 
-| B | ID Recall | Expansions per question | Expansions / B | Tokens | Latency |
-|---|---|---|---|---|---|
-| 1 | 0.2820 | 0.92 | 0.92 | 1,918 | 7.7 s |
-| 2 | 0.2970 | 1.88 | 0.94 | 3,850 | 15.7 s |
-| 4 | 0.3437 | 3.61 | 0.90 | 7,875 | 36.2 s |
-| 8 | 0.3770 | 7.00 | 0.88 | 16,508 | 77.1 s |
+**Hiding the budget value from the model (A2, SUB-300)**
 
-- Recall rises at every step (+0.0150, +0.0467, +0.0333), while tokens and latency roughly double with each doubling of B.
-
-*Budget input (M5 − A2, SUB-300):*
-
-| B | Δ [95% CI] | W/T/L | Holm p |
+| B | Δ (SLM − A2) [95% CI] | W/T/L | Holm p |
 |---|---|---|---|
 | 1 | +0.0033 [+0.0000, +0.0100] | 1/299/0 | 1.0000 |
 | 2 | −0.0033 [−0.0100, +0.0000] | 0/299/1 | 1.0000 |
 | 4 | −0.0022 [−0.0156, +0.0111] | 2/294/4 | 1.0000 |
 | 8 | +0.0083 [−0.0083, +0.0267] | 5/292/3 | 1.0000 |
 
-- Descriptively, A2 stops more often at step 0 (32 questions at every B, vs 17–25 for M5) and less often overall at B=8 (15.3% vs 20.0%).
+Descriptively, A2 stops more often before any expansion (32 questions at every budget, against 17–25 for M5), and less often overall at B = 8 (15.3% vs 20.0%).
 
-*Cost frontiers (F2, SUB-300, descriptive):*
-- **Cost = expansions:** the frontier runs through M0 and then M5 at B = 1, 2, 4 and 8. M1 at B=8 (0.3764) sits just below M5 at B=8 (0.3770).
+**Cost trade-offs (F2, SUB-300, descriptive)**
+- **Cost = passages added:** the frontier runs from M0 through the SLM at B = 1, 2, 4 and 8. Flat retrieval at B = 8 (0.3764) sits just below the SLM at B = 8 (0.3770).
 - **Cost = measured latency:**
-  - The frontier runs M2 at B=8 (0.3252, 0.8 s) → M4 at B=8 (0.3441, 10.4 s) → M5 at B=4 (0.3437, 36.2 s; level with M4 at B=8, 0.0004 lower) → M5 at B=8 (0.3770, 77.1 s).
-  - M4 at B=8 reaches the same recall as M5 at B=4 with about a third of the latency.
+  - The frontier runs M2 at B = 8 (0.3252, 0.8 s) → M4 at B = 8 (0.3441, 10.4 s) → SLM at B = 4 (0.3437, 36.2 s; 0.0004 below M4 at B = 8) → SLM at B = 8 (0.3770, 77.1 s).
+  - M4 at B = 8 matches the SLM's B = 4 recall in about a third of the time.
 
-**Statistical evidence vs descriptive results**
-- **Where the CI and the Holm-adjusted p agree on a positive difference (SUB-300):** every CI excludes 0 and every Holm p is ≤ 0.0234 for:
-  - M5 vs M0 at every B;
-  - M5 vs M2 at B = 1, 2 and 4;
-  - M5 vs M3 at B = 1, 4 and 8;
-  - M5 vs M4 at B = 1 and 4.
-- **On TEST-1704 at B=4:** the two tests agree for all five baselines (T1; see RQ1).
-- **Where the two tests disagree (SUB-300):** the CI excludes 0, but the Holm-adjusted sign-test p is considerably larger (0.0729–0.2204):
-  - M5 vs M2 at B=8 (Holm p 0.0826);
-  - M5 vs M3 at B=2 (0.0729);
-  - M5 vs M4 at B=2 (0.1846);
-  - M5 vs M4 at B=8 (0.2204; CI lower bound +0.0003).
+### What the statistics say
+- **Agree on a positive difference** (CI excludes 0, Holm p ≤ 0.0234):
+  - SLM vs M0 at every budget;
+  - vs M2 at B = 1, 2, 4;
+  - vs M3 at B = 1, 4, 8;
+  - vs M4 at B = 1, 4.
+- **Disagree** (CI excludes 0, but Holm p is considerably larger, 0.0729–0.2204): vs M2 at B = 8, vs M3 at B = 2, and vs M4 at B = 2 and 8. These are reported as disagreements, with no verdict.
+- **Agree on no difference:**
+  - vs flat retrieval (M1) at every budget (CI includes 0, Holm p ≥ 0.1686);
+  - vs the no-budget-input version (A2) at every budget (Holm p = 1.0000).
+- **Descriptive only:** changes across budgets, the share of budget used, tokens and latency, the cost frontiers, and A2's stopping differences. No cross-budget tests were planned.
 
-  These are reported as disagreements, with no verdict.
-- **Where both find no difference:** the CI includes 0 and the Holm p is ≥ 0.1686 for:
-  - M5 vs M1 at every budget on SUB-300 (B=8 Δ +0.0006);
-  - M5 vs A2 (hidden budget value) at every budget (Holm p = 1.0000).
-- **Descriptive only:**
-  - all changes across budgets;
-  - expansions/B, tokens and latency;
-  - the Pareto frontiers;
-  - A2's stopping differences.
-
-  No cross-budget tests were preregistered (frozen decision 3).
-
-**What this means for the proposed method**
+### What it means
 - **Recall versus expansions:** the SLM lies on the recall-versus-expansion Pareto frontier at every tested budget (B = 1, 2, 4, 8; F2a, descriptive).
-- **Recall keeps rising with budget:** it never plateaus between B=1 and B=8, and the controller uses about 88–94% of the allowed budget. So it doesn't systematically under-explore.
-- **Budget-awareness:**
-  - Showing the remaining budget in the prompt made no difference to recall that either test detected (CI includes 0 and Holm p = 1.0000 at every budget).
-  - Whatever budget sensitivity the controller has doesn't depend on seeing the budget number. The v2 system prompt still describes the budget as a maximum without giving its value.
-  - Descriptively, the budget value changes *when* the controller stops (fewer step-0 stops when it's shown), but not how much it retrieves.
-- **Wall-clock latency:** its inference cost makes it substantially less competitive here. The SLM takes about 36 s per question at B=4, and a non-SLM traversal with twice the budget (M4 at B=8) matches that recall in about a third of the time (F2b, descriptive).
-- **Flat retrieval on SUB-300:** at every budget the CI includes 0 and the Holm p is ≥ 0.1686, so the difference is not resolved at this sample size. At B=8 the two are level (+0.0006).
+- **It doesn't under-explore.** Recall rises from B = 1 to B = 8 without levelling off, and the controller uses about 88–94% of the allowed budget.
+- **The budget value itself barely matters.**
+  - Showing the remaining budget in the prompt made no difference to recall that either test detected.
+  - Whatever budget sensitivity the controller has doesn't depend on seeing the number. (The v2 system prompt still describes the budget as a maximum, without its value.)
+  - Descriptively, the value changes *when* the controller stops (fewer stops before any expansion when it's shown), not how much it retrieves.
+- **Wall-clock latency:** its inference cost makes it substantially less competitive. The SLM takes about 36 s per question at B = 4, while a non-SLM traversal with twice the budget (M4 at B = 8) matches that recall in about a third of the time (F2b, descriptive).
+- **Flat retrieval stays close on SUB-300.** At every budget the CI includes 0 and Holm p is ≥ 0.1686, so the difference is not resolved at this sample size. At B = 8 the two are level (+0.0006).
 
-**Most important limitation**
-- **Thin SLM data off B=4:** the budget sweep for the SLM exists only on SUB-300 (n=300). Most per-budget differences are near or below its ~0.04 resolution, which is why the CI and the sign test disagree in several comparisons.
-- **Cost comparisons are descriptive and partial:**
-  - latency was measured on one Apple M3 laptop with 4-bit MLX inference;
-  - several baseline latencies weren't measured exactly and are omitted (D5).
+### Caveats
+- **Thin data away from budget 4.** The SLM's budget sweep exists only on SUB-300 (300 questions). Most per-budget differences are near or below its ~0.04 resolution, which is why the CI and the sign test disagree in several comparisons.
+- **Cost comparisons are descriptive and partial.**
+  - Latency was measured on one Apple M3 laptop with 4-bit MLX inference.
+  - Several baseline latencies weren't measured exactly and are left out.
 - **The budget counts graph expansions only**, so it doesn't capture the SLM's own inference cost, which dominates in practice.

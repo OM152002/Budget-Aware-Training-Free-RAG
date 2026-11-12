@@ -1,8 +1,8 @@
 {
- "status": "FROZEN 2026-11-09",
- "RESULTS_INTERPRETATION.md": "06c1ca65b56bddd15018902c217bcdcc1666e04a856dd6f31fed9366fa5cfd9d",
+ "status": "FROZEN 2026-11-09; restructured for readability 2026-11-12 (same findings and numbers, re-verified)",
+ "RESULTS_INTERPRETATION.md": "d5ee3265a9f3a5b02e2594574cbc5c0b979e4edc3370f69e4d193f7cddb5ed9f",
  "verify_interpretation.py": "e6b97fcb632dfbb48c3dae1c5f69c9fc9e244d5ac9bf556d617d8a802f830bd9",
- "interpretation_verification.json": "5e1c51e9830b240202d012c64d99008cb5159d82f4f91a42fe192e474fb0fc0b",
+ "interpretation_verification.json": "f9fce2994cae01e677aa2f68bb4b7d1c99b3ab1e1d832369c991d4b943569cc1",
  "verified_against_sources_sha256": {
   "tables/T1.csv": "75ce50594b9d37040095266a3cb1ce6fe6a0210d99162ea465fb54a845e1f84d",
   "tables/T1.md": "a65baafa8a7e1e7223144f7ddd32ea78cc8ec53c5fbe3199f4525c5dc2d31b2a",
@@ -33,5 +33,6 @@
   "figures/F4_data.csv": "9f0e4706d579fbcd75d8b242d04bdb400c5681b7cf49a46d595b97079601bea3",
   "figures/F5_data.csv": "41e87ad1bb5395bb314b381925d1c22a3c6d1edcbc2186b66f12926e5c7c1282",
   "figures/figures_validation.json": "92e6ae8ffbd8e5bb8c3e443c2f7197122202b2a5993658602b012c20a76d6287"
- }
+ },
+ "previous_RESULTS_INTERPRETATION.md": "06c1ca65b56bddd15018902c217bcdcc1666e04a856dd6f31fed9366fa5cfd9d"
 }
