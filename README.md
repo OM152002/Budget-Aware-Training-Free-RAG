@@ -1,92 +1,130 @@
 # Budget-Aware Training-Free RAG
 
-CSE 576 Project C: a **training-free, budget-aware retriever**. A pretrained small language model (Qwen3-4B-Instruct-2507, 4-bit, MLX) acts as an `EXPLORE(node)` / `STOP` controller for multi-hop traversal over a **SAGE** chunk graph built on OTT-QA document chunks. It works under an explicit budget B, the maximum number of additional graph nodes. The SLM is not fine-tuned.
+**Can a small language model, with no training, decide which documents to read next and when to stop?**
 
-**Status:** all experiments, statistics, tables and figures are complete and frozen. The interpretation (RQ1–RQ3) is frozen. The final report is not written yet.
+Multi-hop questions often need evidence that a single search doesn't return. The answer may sit one or two links away in a graph of related passages. Following every link is expensive, and a fixed rule follows the wrong ones. This project gives that decision to a small pretrained language model (SLM). The SLM looks at the question, the evidence gathered so far and a short list of neighbouring passages. At each step it either **explores one passage** or **stops**, under a fixed budget of how many passages it may add.
 
-## Start here
+No fine-tuning and no reinforcement learning are involved: the model is used off the shelf.
 
-| Document | What it covers |
-|---|---|
-| [`Project_C_Updated_Phase_Wise_PRD.md`](Project_C_Updated_Phase_Wise_PRD.md) | Scope, research questions RQ1–RQ3 and working rules |
-| [`EXPERIMENT_PLAN.md`](EXPERIMENT_PLAN.md) | Frozen system, methods (M0–M5, A1–A3), question sets, budgets, experiment matrix |
-| [`ANALYSIS_PLAN.md`](ANALYSIS_PLAN.md) | Metrics, statistics and the approved analysis decisions (D1–D8) |
-| [`RESULTS_INTERPRETATION.md`](RESULTS_INTERPRETATION.md) | Findings for RQ1–RQ3, with every number traceable to the frozen outputs |
-| [`analysis/tables/TABLES.md`](analysis/tables/TABLES.md) | Tables T1–T6 |
-| [`analysis/figures/`](analysis/figures/) | Figures F1–F5 (PNG and PDF, plus the plotted data as CSV) |
+> CSE 576 · Project C · built on [SAGE](https://github.com/CoRAL-ASU/sage) (Structure-Aware Graph Expansion) · OTT-QA documents · Qwen3-4B-Instruct (4-bit, MLX), running locally on an M3 MacBook Air
 
-Background and history:
-- [`PHASE1_BLOCKERS.md`](PHASE1_BLOCKERS.md) and [`PHASE1_ARTIFACT_AUDIT.md`](PHASE1_ARTIFACT_AUDIT.md): the SAGE repository and artifact audit.
-- [`GRAPH_RECONSTRUCTION_PLAN.md`](GRAPH_RECONSTRUCTION_PLAN.md): how the graph was rebuilt.
-- [`SEED_RETRIEVAL_PLAN.md`](SEED_RETRIEVAL_PLAN.md): seed retrieval.
+---
 
-## Pipeline and repository layout
+## How it works
 
-```text
-query → seed retrieval (Fusion-A, top-3) → graph neighbours → SAGE pre-filter (top-20)
-      → SLM controller: EXPLORE one candidate or STOP → repeat until STOP / budget / no candidates
+```mermaid
+flowchart LR
+    Q[Question] --> S[Seed retrieval<br/>top-3 passages]
+    S --> N[Graph neighbours<br/>of the evidence]
+    N --> F[SAGE pre-filter<br/>top-20 candidates]
+    F --> C{SLM controller}
+    C -- "EXPLORE one" --> E[Add to evidence<br/>budget − 1]
+    E --> N
+    C -- STOP --> R[Retrieved evidence]
+    E -. budget used up .-> R
 ```
+
+1. **Seeds.** A hybrid dense + BM25 search (SAGE's own) finds three starting passages.
+2. **Candidates.** The graph neighbours of everything retrieved so far are ranked by SAGE's similarity score, and the top 20 are shown to the model.
+3. **Decision.** The SLM replies with a single structured action: `{"action": "EXPLORE", "node_id": "A3"}` or `{"action": "STOP"}`.
+4. **Repeat** until the model stops, the budget runs out, or there's nothing left to explore.
+
+Every method we compare uses the same graph, the same seeds and the same candidate lists. The only thing that changes is **who picks the next passage**.
+
+## What we compared
+
+| | Method | How it picks the next passage |
+|---|---|---|
+| **M5** | **SLM controller (ours)** | The model chooses, and can stop early |
+| M4 | SAGE-score greedy | Always takes the top-ranked candidate |
+| M3 | Random | A random candidate from the top 20 |
+| M2 | Original SAGE expansion | Adds the best-scoring neighbours of the seeds in one shot |
+| M1 | Flat retrieval | Ignores the graph and takes more search results |
+| M0 | Seeds only | No expansion |
+
+We also removed one piece of the controller at a time: its **history**, the **budget** shown to it, and its ability to **stop**.
+
+## Findings
+
+<p align="center">
+  <img src="analysis/figures/F1.png" alt="Recall versus budget for every method" width="880">
+</p>
+
+**1. The model picks better passages than the fixed rules.**
+- With a budget of 4 passages, the SLM found more of the gold evidence than every baseline:
+  - **0.36 recall**, against 0.33 for flat search, 0.32 for SAGE-score greedy, 0.31 for SAGE's original expansion, and 0.27 for random.
+- It held on a set of 1,654 questions we had never scored before.
+- It often passes over the pre-filter's top choice (only about 40% of its picks are rank 1), and on balance those choices pay off.
+- Most of the gain comes from questions where the gold passage is close by: there, its recall is 0.53 against 0.38 for the score-based rule.
+
+**2. It also follows chains beyond direct neighbours.** It retrieved more gold passages two or more hops from the seeds than the score-based traversal did.
+
+**3. Stopping saves effort, at a very small price.**
+- The model stopped early on about 1 in 9 questions, using about 7% fewer expansions and 9% fewer tokens.
+- Forcing it to keep going recovered gold on only 9 of those 187 questions.
+- But stopping isn't a precise "I have enough" signal: only about 40% of stops happened with all the gold already found.
+
+**4. On the frontier for passages added, but slow in wall-clock time.**
+- More budget keeps helping: recall rises from 0.28 to 0.38 as the budget grows from 1 to 8.
+- At every budget we tested, the SLM sits on the recall-versus-passages-added Pareto frontier.
+- Its inference cost makes it much less competitive in wall-clock time: about 36 s per question at budget 4 on a laptop. A score-based traversal with twice the budget reaches the same recall in about a third of the time.
+
+**5. Two controller inputs didn't show a measurable effect.** Removing the traversal history, or hiding the remaining budget, changed recall by less than our 300-question ablation set can resolve.
+
+**6. It's reliable.** Thousands of decisions produced zero malformed or invalid outputs.
+
+**Where this falls short**
+- **Absolute recall stays low.** For about half the questions, none of the remaining gold is reachable within one hop of the seeds, and no traversal policy can fix that.
+- **Flat search is a strong baseline.** It stays close to the SLM, and on the 300-question budget sweep the difference between them isn't resolved.
+- **The evidence base is narrow:** one dataset, one model and one prompt.
+
+The paired statistics, per-budget comparisons and every caveat are in [`RESULTS_INTERPRETATION.md`](RESULTS_INTERPRETATION.md).
+
+## Repository guide
+
+| Read this | For |
+|---|---|
+| [`RESULTS_INTERPRETATION.md`](RESULTS_INTERPRETATION.md) | The full findings, organised by research question |
+| [`analysis/tables/TABLES.md`](analysis/tables/TABLES.md) · [`analysis/figures/`](analysis/figures/) | Tables T1–T6 and figures F1–F5 |
+| [`EXPERIMENT_PLAN.md`](EXPERIMENT_PLAN.md) · [`ANALYSIS_PLAN.md`](ANALYSIS_PLAN.md) | What was run, and how it was scored and tested |
+| [`Project_C_Updated_Phase_Wise_PRD.md`](Project_C_Updated_Phase_Wise_PRD.md) | Project scope and research questions |
+
+<details>
+<summary><b>Code layout</b></summary>
 
 | Directory | Contents |
 |---|---|
-| `graph_reconstruction/` | CPU runner for SAGE's released graph pipeline (documents only); validation and verification reports |
-| `seed_retrieval/` | Fusion-A seed retrieval (a transcription of SAGE's `hybrid_search`) and its evaluation |
-| `traversal_adapter/` | `GraphSeedAdapter`: node, neighbour and seed lookup over the reconstructed graph |
-| `candidate_prefilter/` | SAGE `_calculate_hybrid_similarities` pre-filter (cache-free) and its evaluation |
-| `slm_controller/` | Controller prompt (v2), output parser, MLX backend |
-| `adaptive_traversal/` | Traversal loop (budget, visited set, duplicate-text handling); development and held-out pilots |
-| `baselines/` | Non-SLM traversal baselines (SAGE-score greedy, random) |
-| `experiments/` | Frozen experiment registry, resumable runner, ablations, question sets, `FROZEN.json` (hashes), run manifests |
-| `analysis/` | Integrity checks → scoring → statistics → tables → figures → T7 appendix → interpretation check |
-| `phase1_repro/artifact_audit/` | Scripts behind the Phase 1 artifact audit |
+| `graph_reconstruction/` | Rebuilds SAGE's document graph on CPU (21,742 passages, ~397k edges) |
+| `seed_retrieval/` | SAGE's hybrid seed search |
+| `traversal_adapter/` | Node, neighbour and seed lookup over the graph |
+| `candidate_prefilter/` | SAGE's similarity pre-filter |
+| `slm_controller/` | Prompt, output parser, MLX backend |
+| `adaptive_traversal/` | The traversal loop and the pilot runs |
+| `baselines/` | Score-greedy and random traversal |
+| `experiments/` | Frozen experiment registry, resumable runner, ablations, run manifests |
+| `analysis/` | Integrity checks → scoring → statistics → tables → figures |
 
-Every analysis step reads only the frozen outputs of the step before it and verifies their hashes against its manifest.
+</details>
 
-## Main result (B = 4, TEST-1704, ID Recall; full numbers in T1)
+<details>
+<summary><b>Reproducibility and what isn't included</b></summary>
 
-| Method | ID Recall |
-|---|---|
-| M0 seeds only | 0.2409 |
-| M1 flat retrieval | 0.3341 |
-| M2 SAGE one-shot expansion | 0.3109 |
-| M3 random traversal | 0.2706 |
-| M4 SAGE-score greedy traversal | 0.3207 |
-| **M5 SLM controller (this work)** | **0.3609** |
+All methods, prompts and settings were frozen before the final runs. `experiments/FROZEN.json` records hashes of the code, data, model and libraries, and every analysis step checks the outputs of the step before it.
 
-See [`RESULTS_INTERPRETATION.md`](RESULTS_INTERPRETATION.md) for the paired statistics, the budget sweep, the ablations and the limitations.
+Left out of the repository for size, and available on request:
+- the reconstructed graph and its caches;
+- seed and pre-filter rankings;
+- per-question experiment outputs and scores.
 
-## What is not in this repository
+Also needed but not included:
+- the SAGE code: [CoRAL-ASU/sage](https://github.com/CoRAL-ASU/sage) at commit `405d5f5`;
+- the SAGE artifacts: Hugging Face `prasham1515/SAGE`.
 
-These items are excluded for size. The key excluded artifacts (graph edges, seed rankings, experiment outputs and per-question scores) have SHA-256 hashes recorded in `experiments/FROZEN.json` or the analysis manifests:
-- **Upstream SAGE code:** <https://github.com/CoRAL-ASU/sage> at commit `405d5f5`, cloned to `sage/` and unmodified.
-- **SAGE artifacts:** Hugging Face dataset `prasham1515/SAGE`, expected in `sage_hf_artifacts/`.
-- **Large generated data:**
-  - the reconstructed graph edges (275 MB) and caches;
-  - seed rankings;
-  - pre-filter rankings;
-  - per-question experiment outputs (`experiments/runs/*/results.jsonl`) and per-question scores.
+Without the large files, the analysis scripts stop at their input checks. The committed tables and figures are the final results.
 
-  Available on request.
-- **Logs and smoke-test outputs.**
+**Environment:**
+- Python 3.13, with `mlx` 0.32.4, `mlx-lm` 0.32.2, `torch` 2.14.1, `sentence-transformers` 6.1.0.
+- Model: `mlx-community/Qwen3-4B-Instruct-2507-4bit` at revision `50d4277`, greedy decoding.
+- Run commands are in [`experiments/README.md`](experiments/README.md).
 
-Because the per-question files are excluded, the analysis scripts verify their inputs and will stop on a fresh clone. The committed tables, figures, statistics and aggregate scores are the frozen results.
-
-## Environment (frozen; see `experiments/FROZEN.json`)
-
-| Component | Version |
-|---|---|
-| Python | 3.13.1 |
-| mlx | 0.32.4 |
-| mlx-lm | 0.32.2 |
-| torch | 2.14.1 |
-| sentence-transformers | 6.1.0 |
-| transformers | 5.19.0 |
-| numpy | 2.2.6 |
-| pandas | 3.0.6 |
-
-- **Model:** `mlx-community/Qwen3-4B-Instruct-2507-4bit` at revision `50d4277`, greedy decoding.
-- **Hardware:** everything ran on an Apple M3 MacBook Air (16 GB), CPU plus Metal.
-- **Running the scripts:**
-  - Use `python -P -s` with `PYTHONHASHSEED=0`.
-  - Set `OMP_NUM_THREADS=1` when faiss and torch share a process.
-  - Exact experiment commands are in [`experiments/README.md`](experiments/README.md).
+</details>
