@@ -1,0 +1,11 @@
+population,B,condition,n,slm_calls_total,invalid_first_attempts,retries,controller_errors,terminations
+SUB-300,1,M5|None|1|max_budget|None,300,300.0,0,0,0,"{""BUDGET_EXHAUSTED"": 275, ""SLM_STOP"": 25}"
+SUB-300,2,M5|None|2|max_budget|None,300,583.0,0,0,0,"{""BUDGET_EXHAUSTED"": 281, ""SLM_STOP"": 19}"
+TEST-1704,4,M5|None|4|max_budget|None,1704,6505.0,0,0,0,"{""BUDGET_EXHAUSTED"": 1516, ""NO_CANDIDATES"": 1, ""SLM_STOP"": 187}"
+NEW-1654,4,M5|None|4|max_budget|None,1654,6311.0,0,0,0,"{""BUDGET_EXHAUSTED"": 1469, ""NO_CANDIDATES"": 1, ""SLM_STOP"": 184}"
+SUB-300,4,M5|None|4|max_budget|None,300,1130.0,0,0,0,"{""BUDGET_EXHAUSTED"": 254, ""SLM_STOP"": 46}"
+SUB-300,8,M5|None|8|max_budget|None,300,2161.0,0,0,0,"{""BUDGET_EXHAUSTED"": 240, ""SLM_STOP"": 60}"
+SUB-300,4,A1|None|4|max_budget|None,300,1143.0,0,0,0,"{""BUDGET_EXHAUSTED"": 273, ""SLM_STOP"": 27}"
+SUB-300,8,A2|None|8|max_budget|None,300,2130.0,0,0,0,"{""BUDGET_EXHAUSTED"": 254, ""SLM_STOP"": 46}"
+TEST-1704,4,A3|None|4|max_budget|None,1704,7158.000000000001,0,0,0,"{""BUDGET_EXHAUSTED"": 1703, ""NO_CANDIDATES"": 1}"
+SUB-300,8,A3|None|8|max_budget|None,300,2587.0,0,0,0,"{""BUDGET_EXHAUSTED"": 300}"

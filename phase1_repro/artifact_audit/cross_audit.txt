@@ -1,0 +1,41 @@
+structural_link targets: 788 distinct; links whose target is a table source_id in table file: 21742/21742
+table chunks: 974 distinct table source_ids: 788
+table chunk_index distribution: [(0, 974)]
+
+avg rank-cell reasons: {'resolved': 162969, 'intro chunk (no file)': 2284, 'same prefix, different hash': 54248, 'absent entirely': 1699}
+avg gold reasons: {'resolved': 2334, 'same prefix, different hash': 657, 'absent entirely': 119}
+avg absent examples: ['ottaqa-Reality_Check__Australian_TV_series__0-Married_at_First_Sight__U_S__TV_series__chunk_1_bc4761d7162b', 'ottaqa-List_of_Have_I_Got_News_for_You_episodes_43-David_Mitchell__comedian__chunk_1_72ce2ddadc38', 'ottaqa-Trevor_Eyster_0-No_Compromises_chunk_1_f714d905fbef', 'ottaqa-List_of_Metropolitan_Statistical_Areas_0-Dallas-Fort_Worth-Arlington__TX_MSA_chunk_1_b5df26b4d20f']
+
+bm25 rank-cell reasons: {'intro chunk (no file)': 496, 'resolved': 17214, 'same prefix, different hash': 4303, 'absent entirely': 107}
+bm25 gold reasons: {'resolved': 3002, 'absent entirely': 89}
+bm25 absent examples: ['ottaqa-76th_United_States_Congress_0-Ernest_Lundeen_chunk_1_c1f2f54d45cb', 'ottaqa-FBI_on_The_Sopranos_0-Tony_Soprano_chunk_1_da8573f1a048', 'ottaqa-List_of_alumni_and_faculty_of_the_Royal_Melbourne_Institute_of_Technology_9-Carry_Me_Down_chunk_1_b019644c3acc', 'ottaqa-List_of_alumni_and_faculty_of_the_Royal_Melbourne_Institute_of_Technology_0-David_de_Vries_chunk_1_4173ade17bb5']
+
+seq rank-cell reasons: {'resolved': 17129, 'intro chunk (no file)': 585, 'same prefix, different hash': 4323, 'absent entirely': 83}
+seq gold reasons: {'resolved': 3002, 'absent entirely': 89}
+seq absent examples: ['ottaqa-Johnny_Depp_filmography_2-21_Jump_Street_chunk_1_fd4073e75f7f', 'ottaqa-List_of_alumni_and_faculty_of_the_Royal_Melbourne_Institute_of_Technology_0-David_de_Vries_chunk_1_4173ade17bb5', 'ottaqa-Grammy_Award_for_Best_Female_Country_Vocal_Performance_3-Mary_Chapin_Carpenter_chunk_1_82eb03c61060', 'ottaqa-76th_United_States_Congress_0-Ernest_Lundeen_chunk_1_c1f2f54d45cb']
+avg: questions with ALL gold resolvable 1571, ANY 1679, all gold are doc chunks 1114 / 2212
+bm25: questions with ALL gold resolvable 2155, ANY 2159, all gold are doc chunks 1678 / 2212
+gold_docs identical avg vs bm25: 1626/2212
+gold_docs identical avg vs seq: 1626/2212
+gold_docs identical avg vs cexp: 2212/2212
+gold_docs identical avg vs ck: 2212/2212
+DIFF f99022ac82bb31a4 
+ avg : ['ottaqa-1988_NAIA_Division_II_football_season_0-Wisconsin_State_University_Conference_chunk_0_b6059540e966'] 
+ bm25: ['ottaqa-1988_NAIA_Division_II_football_season_0-Wisconsin_State_University_Conference_chunk_0_a946f1341c53']
+DIFF 29b918f68d5471df 
+ avg : ['ottaqa-King_Edward_VII-class_battleship_0-HMS_King_Edward_VII_chunk_0_032a682d80b0', 'ottaqa-King_Edward_VII-class_battleship_0-HMS_Dominion_chunk_1_0637a5732e1c', 'ottaqa-King_Edward_VII-class_battleship_0-HMS_Dominion_chunk_0_431b797dc220', 'ottaqa-King_Edward_VII-class_battleship_0-HMS_Hindustan__1903__chunk_0_27bf8e8a5d28', 'ottaqa-King_Edward_VII-class_battleship_0-HMS_Britannia__1904__chunk_0_491d41702254', 'ottaqa-King_Edward_VII-class_battleship_0-HMS_Britannia__1904__chunk_1_f31ce1b9b476', 'ottaqa-King_Edward_VII-class_battleship_0-HMS_New_Zealand__1904__chunk_0_be3de314ada2', 'ottaqa-King_Edward_VII-class_battleship_0-HMS_Africa__1905__chunk_0_d72a9cc3bdc4', 'ottaqa-King_Edward_VII-class_battleship_0-HMS_Hibernia__1905__chunk_0_f6d4e84c8f5f'] 
+ bm25: ['ottaqa-King_Edward_VII-class_battleship_0-HMS_King_Edward_VII_chunk_0_15c4e15170eb', 'ottaqa-King_Edward_VII-class_battleship_0-HMS_Dominion_chunk_1_0637a5732e1c', 'ottaqa-King_Edward_VII-class_battleship_0-HMS_Dominion_chunk_0_431b797dc220', 'ottaqa-King_Edward_VII-class_battleship_0-HMS_Hindustan__1903__chunk_0_27bf8e8a5d28', 'ottaqa-King_Edward_VII-class_battleship_0-HMS_Britannia__1904__chunk_0_491d41702254', 'ottaqa-King_Edward_VII-class_battleship_0-HMS_Britannia__1904__chunk_1_f31ce1b9b476', 'ottaqa-King_Edward_VII-class_battleship_0-HMS_New_Zealand__1904__chunk_0_be3de314ada2', 'ottaqa-King_Edward_VII-class_battleship_0-HMS_Africa__1905__chunk_0_ccbe7801addd', 'ottaqa-King_Edward_VII-class_battleship_0-HMS_Hibernia__1905__chunk_0_65131bc00aec']
+question text identical avg vs enh: 2212
+seq top10 == avg top10 (as list): 11 | same set: 131
+cexp rank cols == ck rank cols (all 100, NaN-aware): 189
+cexp first 1 == avg first 1: 945
+cexp first 2 == avg first 2: 338
+cexp first 5 == avg first 5: 14
+cexp first 10 == avg first 10: 0
+cexp first 20 == avg first 20: 0
+mean fraction of cexp ids also in avg top100: 0.223
+cexp filled-count distribution: {18: 2, 22: 2, 23: 2, 24: 1, 25: 2, 29: 1, 31: 1, 32: 3} ... rows with 100: 1490
+example row with NaNs: filled 32 | top100_chunk_ids sample tail: [None, None, None] | unique in top100 list: 33
+avg top5_results vs top5_chunk_ids row0: [('Cardi_B_0', 'ottaqa-Cardi_B_0_chunk_0_c2402dcf2cef'), ('Cardi_B_0', 'ottaqa-intro-Cardi_B_0_chunk_0_8f2643c936a6'), ('List_of_alumni_and_faculty_of_the_Royal_Melbourne_Institute_of_Technology_7', 'ottaqa-List_of_alumni_and_faculty_of_the_Royal_Melbourne_Institute_of_Technology_7-Rove_McManus_chunk_0_3fc017f2e72e'), ('List_of_alumni_and_faculty_of_the_Royal_Melbourne_Institute_of_Technology_7', 'ottaqa-List_of_alumni_and_faculty_of_the_Royal_Melbourne_Institute_of_Technology_7-Peter_Helliar_chunk_0_c2252e7c7b3a'), ('Cornell_University_Department_of_History_2', 'ottaqa-Cornell_University_Department_of_History_2-S_E__Cupp_chunk_0_2edd22f293d2')]
+table_id appears as prefix of some gold id: 2128 / 2212
+enh distinct communities referenced (top10): 1933

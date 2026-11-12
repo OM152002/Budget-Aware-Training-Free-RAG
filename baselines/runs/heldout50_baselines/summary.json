@@ -1,0 +1,95 @@
+{
+  "config": {
+    "questions": 50,
+    "B_max": 4,
+    "random_seed": 0,
+    "k": 3,
+    "m": 20,
+    "dedup_text": true,
+    "prefilter": "SAGE _calculate_hybrid_similarities, cache-free",
+    "slm_source": "adaptive_traversal/runs/heldout50_k3_m20_B4_v2",
+    "note": "SLM row is identical in both comparisons (its own expansions)."
+  },
+  "checks": {
+    "matched_is_prefix_of_max": "50/50",
+    "sage_step1_matches_recorded": "50/50",
+    "seeds_match_slm": "50/50"
+  },
+  "max_budget": {
+    "seeds_only": {
+      "id_recall": 0.25,
+      "text_recall_diag": 0.25,
+      "questions_gaining_gold_id": 0,
+      "questions_gaining_gold_text_diag": 0,
+      "additional_gold_found_id": 0,
+      "avg_expansions": 0.0,
+      "avg_runtime_s": 0.0
+    },
+    "random": {
+      "id_recall": 0.295,
+      "text_recall_diag": 0.295,
+      "questions_gaining_gold_id": 3,
+      "questions_gaining_gold_text_diag": 3,
+      "additional_gold_found_id": 3,
+      "avg_expansions": 4.0,
+      "avg_runtime_s": 3.721
+    },
+    "sage_score": {
+      "id_recall": 0.34,
+      "text_recall_diag": 0.36,
+      "questions_gaining_gold_id": 6,
+      "questions_gaining_gold_text_diag": 7,
+      "additional_gold_found_id": 6,
+      "avg_expansions": 4.0,
+      "avg_runtime_s": 3.483
+    },
+    "slm": {
+      "id_recall": 0.365,
+      "text_recall_diag": 0.385,
+      "questions_gaining_gold_id": 7,
+      "questions_gaining_gold_text_diag": 8,
+      "additional_gold_found_id": 7,
+      "avg_expansions": 3.82,
+      "avg_runtime_s": 37.214
+    }
+  },
+  "matched_expansion": {
+    "seeds_only": {
+      "id_recall": 0.25,
+      "text_recall_diag": 0.25,
+      "questions_gaining_gold_id": 0,
+      "questions_gaining_gold_text_diag": 0,
+      "additional_gold_found_id": 0,
+      "avg_expansions": 0.0,
+      "avg_runtime_s": 0.0
+    },
+    "random": {
+      "id_recall": 0.295,
+      "text_recall_diag": 0.295,
+      "questions_gaining_gold_id": 3,
+      "questions_gaining_gold_text_diag": 3,
+      "additional_gold_found_id": 3,
+      "avg_expansions": 3.82,
+      "avg_runtime_s": 3.634
+    },
+    "sage_score": {
+      "id_recall": 0.34,
+      "text_recall_diag": 0.36,
+      "questions_gaining_gold_id": 6,
+      "questions_gaining_gold_text_diag": 7,
+      "additional_gold_found_id": 6,
+      "avg_expansions": 3.82,
+      "avg_runtime_s": 3.379
+    },
+    "slm": {
+      "id_recall": 0.365,
+      "text_recall_diag": 0.385,
+      "questions_gaining_gold_id": 7,
+      "questions_gaining_gold_text_diag": 8,
+      "additional_gold_found_id": 7,
+      "avg_expansions": 3.82,
+      "avg_runtime_s": 37.214
+    }
+  },
+  "wall_seconds": 710.9
+}

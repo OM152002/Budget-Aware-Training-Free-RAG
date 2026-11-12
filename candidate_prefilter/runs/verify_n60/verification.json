@@ -1,0 +1,29 @@
+{
+  "V1_cache_vs_cache_free": {
+    "cases": 180,
+    "ranking_identical": 170,
+    "max_score_abs_diff": 9.536743167393169e-08,
+    "topm_identical": {
+      "5": 180,
+      "10": 179,
+      "20": 179,
+      "50": 178
+    },
+    "PASS": false
+  },
+  "V2_vs_sage_get_graph_neighbors": {
+    "cases": 360,
+    "same_set": 349,
+    "differs_only_by_boundary_ties": 11,
+    "real_mismatch": 0,
+    "examples": [],
+    "PASS": true
+  },
+  "timing_s": {
+    "warm_questions": 60,
+    "warm_total": 47.3,
+    "per_call_cached_mean": 0.165,
+    "per_call_cache_free_mean": 0.687
+  },
+  "ALL_PASS": false
+}

@@ -1,0 +1,6 @@
+category,wins,ties,losses
+all,116,1543,45
+all_gold_in_seeds,0,382,0
+reachable_top20,76,200,28
+reachable_filtered,8,102,1
+unreachable_1hop,32,859,16

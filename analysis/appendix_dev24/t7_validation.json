@@ -1,0 +1,40 @@
+{
+ "v1 reproduces the pilot's recorded summary": {
+  "PASS": true,
+  "recall_seed": true,
+  "recall_final": true,
+  "invalid_first_attempts": true,
+  "retries": true,
+  "stops": true,
+  "duplicate_text_explorations": true,
+  "explored_nodes": true,
+  "new_gold": true,
+  "questions_gaining": true,
+  "avg_slm_calls": true,
+  "stratum_recall": true
+ },
+ "v2 reproduces the pilot's recorded summary": {
+  "PASS": true,
+  "recall_seed": true,
+  "recall_final": true,
+  "invalid_first_attempts": true,
+  "retries": true,
+  "stops": true,
+  "duplicate_text_explorations": true,
+  "explored_nodes": true,
+  "new_gold": true,
+  "questions_gaining": true,
+  "avg_slm_calls": true,
+  "stratum_recall": true
+ },
+ "both versions = DEV-24 (24 questions), disjoint from TEST-1704": {
+  "PASS": true
+ },
+ "seed recall identical across versions": {
+  "PASS": true
+ },
+ "pilot run files unchanged": {
+  "PASS": true
+ },
+ "ALL_PASS": true
+}

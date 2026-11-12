@@ -1,0 +1,42 @@
+{
+  "procedure": "agent/ott_qa_api_server.py::hybrid_search (L272-344), standalone transcription (seed_common.py)",
+  "fusion": "boost * (0.5 * 1/(1+sqL2) + 0.5 * bm25/max_bm25), boost=1.5 if in HNSW top-2k AND bm25>0",
+  "top_k_saved": 100,
+  "hnsw_candidates": 200,
+  "hnsw": {
+    "class": "ott_qa_retrieval_pipeline.HNSWIndex",
+    "M": 32,
+    "efConstruction": 200,
+    "efSearch": 100,
+    "vectors": "stored docs_chunks_1 embeddings (384-d)"
+  },
+  "bm25": {
+    "class": "ott_qa_retrieval_pipeline.BM25Index (rank_bm25.BM25Okapi k1=1.5 b=0.75 eps=0.25)",
+    "text": "source_info.source_name | content",
+    "tokenizer": "re.findall(r'\\w+', lower)"
+  },
+  "query_encoder": "SentenceTransformer('all-MiniLM-L6-v2', device='cpu'), raw question text",
+  "corpus": {
+    "documents": 21742,
+    "tables": 0,
+    "equals_graph_nodes": true
+  },
+  "questions_source": "/Users/ompatel/Downloads/CSE576/Project/sage_hf_artifacts/raw/bm25_only_results.csv",
+  "questions": 2212,
+  "gold_source": "bm25_only_results.csv gold_docs (doc_gold = gold IDs present in the 21,742-doc corpus)",
+  "env": {
+    "OMP_NUM_THREADS": "1",
+    "PYTHONHASHSEED": "0"
+  },
+  "input_sha256": {
+    "bm25_only_results.csv": "b75f69a9c6ac760d0889cc104b9c326f98f50ce68c81f942237a846545bc3b4f",
+    "graph_indexing_filtered.csv": "f7b1a9acd608ec1faa47ae4ec42d00136cf5c900c09a54903c378cc7fdcae70b"
+  },
+  "sage_commit": "405d5f59c5f7ab612deb2fc7a4b94851c2c590ad",
+  "runtime_s": {
+    "indices": 10.9,
+    "queries": 178.8,
+    "total": 191.6
+  },
+  "peak_rss_gb": 1.64
+}

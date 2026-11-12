@@ -1,0 +1,90 @@
+{
+  "model": {
+    "repo": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+    "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+    "quantization": "4-bit, group_size 64 (MLX)",
+    "backend": "mlx-lm 0.32.2 / mlx 0.32.4",
+    "load_seconds": 1.9,
+    "decoding": "greedy (temperature 0.0), max_new_tokens 48"
+  },
+  "setup": {
+    "k": 3,
+    "m": 20,
+    "remaining_budget": 4,
+    "history": "empty (first decision)",
+    "max_passage_chars": 300,
+    "questions": 24,
+    "strata": {
+      "gold_in_cands_small": 6,
+      "gold_in_cands_full": 6,
+      "no_gold_small": 6,
+      "no_gold_full": 6
+    }
+  },
+  "memory": {
+    "process_rss_before_model_gb": 0.78,
+    "process_rss_after_load_gb": 1.24,
+    "process_rss_peak_gb": 1.24,
+    "mlx_peak_memory_gb": 3.19
+  },
+  "tokens": {
+    "prompt_mean": 1601.1,
+    "prompt_min": 583,
+    "prompt_max": 2070,
+    "output_mean": 14.0,
+    "output_max": 15
+  },
+  "latency_ms": {
+    "mean": 5386,
+    "median": 5809,
+    "max": 6968,
+    "prompt_tps_mean": 325.6,
+    "generation_tps_mean": 33.5
+  },
+  "validity": {
+    "valid_rate": 0.958,
+    "errors": {
+      "VISITED_NODE": 1
+    },
+    "format_flags": {}
+  },
+  "actions": {
+    "EXPLORE": 23,
+    "INVALID": 1
+  },
+  "actions_by_stratum": {
+    "gold_in_cands_small": {
+      "EXPLORE": 6
+    },
+    "gold_in_cands_full": {
+      "EXPLORE": 6
+    },
+    "no_gold_small": {
+      "EXPLORE": 6
+    },
+    "no_gold_full": {
+      "EXPLORE": 5,
+      "INVALID": 1
+    }
+  },
+  "explore_selected_in_candidate_set": "23/23",
+  "selected_rank_distribution": {
+    "1": 9,
+    "2": 4,
+    "3": 3,
+    "5": 3,
+    "6": 1,
+    "9": 2,
+    "14": 1
+  },
+  "ANALYSIS_ONLY_gold": {
+    "questions_with_gold_in_candidates": 12,
+    "of_those_explore": 12,
+    "explore_selects_gold": 5,
+    "chance_rate_mean_gold_fraction": 0.073,
+    "prefilter_rank1_is_gold": 1,
+    "stop_when_gold_available": 0
+  },
+  "determinism_rerun_first6_identical": true,
+  "wall_seconds": 160.7
+}

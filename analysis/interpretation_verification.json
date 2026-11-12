@@ -1,0 +1,133 @@
+{
+ "numeric_tokens": 525,
+ "unmatched_tokens": [],
+ "derived_checks": {
+  "18": {
+   "PASS": true,
+   "recomputed": 18,
+   "explanation": "RQ1 comparisons: T1+T2 on TEST and NEW"
+  },
+  "0.01": {
+   "PASS": true,
+   "recomputed": 0.005013194668270611,
+   "explanation": "largest Holm p among the 18 RQ1 comparisons (< 0.01)"
+  },
+  "0.0006": {
+   "PASS": true,
+   "recomputed": 0.0005847775422068158,
+   "explanation": "max |TEST \u2212 NEW| recall over T1 methods (also M5 \u2212 M1 at B=8 SUB, in stats)"
+  },
+  "36": {
+   "PASS": true,
+   "recomputed": 36.17283950617284,
+   "explanation": "lowest step-wise rank-1 share (%) in F4"
+  },
+  "42": {
+   "PASS": true,
+   "recomputed": 41.75126903553299,
+   "explanation": "highest step-wise rank-1 share (%) in F4"
+  },
+  "0.10": {
+   "PASS": true,
+   "recomputed": 0.09906153199979,
+   "explanation": "max recall in unreachable_1hop category over T5c methods (\u2264 0.10)"
+  },
+  "11.0": {
+   "PASS": true,
+   "recomputed": 10.974178403755868,
+   "explanation": "M5 B=4 TEST stop rate, %"
+  },
+  "7": {
+   "PASS": true,
+   "recomputed": 7.251908396946566,
+   "explanation": "expansions saved by STOP, %"
+  },
+  "9": {
+   "PASS": true,
+   "recomputed": 9.255284643170992,
+   "explanation": "tokens saved by STOP, % (also 9 lost questions)"
+  },
+  "40": {
+   "PASS": true,
+   "recomputed": 39.57219251336898,
+   "explanation": "share of stops with all gold present, %"
+  },
+  "113": {
+   "PASS": true,
+   "recomputed": 113,
+   "explanation": "stops without all gold present"
+  },
+  "104": {
+   "PASS": true,
+   "recomputed": 104,
+   "explanation": "of those, stops where A3 found nothing more"
+  },
+  "178": {
+   "PASS": true,
+   "recomputed": 178,
+   "explanation": "stopped questions where A3 found nothing more"
+  },
+  "17": {
+   "PASS": true,
+   "recomputed": 17,
+   "explanation": "fewest M5 step-0 stops on SUB-300 across B"
+  },
+  "25": {
+   "PASS": true,
+   "recomputed": 25,
+   "explanation": "most M5 step-0 stops on SUB-300 across B"
+  },
+  "88": {
+   "PASS": true,
+   "recomputed": 87.54166666666666,
+   "explanation": "lowest expansions/B, %"
+  },
+  "94": {
+   "PASS": true,
+   "recomputed": 94.0,
+   "explanation": "highest expansions/B, %"
+  },
+  "0.0234": {
+   "PASS": true,
+   "recomputed": 0.0234375,
+   "explanation": "largest Holm p among SUB-300 comparisons where both tests agree on a positive \u0394"
+  },
+  "0.0729": {
+   "PASS": true,
+   "recomputed": 0.07291953032836318,
+   "explanation": "smallest Holm p among SUB-300 disagreements"
+  },
+  "0.1686": {
+   "PASS": true,
+   "recomputed": 0.16863754391670227,
+   "explanation": "smallest Holm p for M5 vs M1 on SUB-300"
+  },
+  "0.0004": {
+   "PASS": true,
+   "recomputed": 0.00040598290598287123,
+   "explanation": "M4 B=8 minus M5 B=4 recall, SUB-300"
+  },
+  "third": {
+   "PASS": true,
+   "recomputed": 0.2884803288605952,
+   "explanation": "latency ratio M4 B=8 / M5 B=4 (\u2248 1/3)"
+  },
+  "0.04": {
+   "PASS": true,
+   "recomputed": 0.04,
+   "explanation": "SUB-300 resolution, EXPERIMENT_PLAN \u00a70 (plan constant)"
+  },
+  "20": {
+   "PASS": true,
+   "recomputed": 20.0,
+   "explanation": "upper end of stop share 11\u201320% (M5 B=8 SUB) / top-20 pre-filter"
+  },
+  "\u0394/CI strings attached to the right W/T/L and p": {
+   "PASS": true,
+   "cited_rows": 40,
+   "wrong": []
+  }
+ },
+ "doc_sha256": "06c1ca65b56bddd15018902c217bcdcc1666e04a856dd6f31fed9366fa5cfd9d",
+ "ALL_PASS": true
+}

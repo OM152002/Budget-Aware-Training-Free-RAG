@@ -1,0 +1,199 @@
+{
+  "determinism": {
+    "seed_csv_identical": true,
+    "score_jsonl_identical": true,
+    "questions": 2212,
+    "all_returned_100": true
+  },
+  "eval_sets": {
+    "PRIMARY doc-retrieval: questions with >=1 doc gold; denominator = doc gold only": {
+      "n_questions": 1728,
+      "@1": {
+        "recall": 0.1272,
+        "hit": 0.1453
+      },
+      "@2": {
+        "recall": 0.198,
+        "hit": 0.2176
+      },
+      "@3": {
+        "recall": 0.2402,
+        "hit": 0.2639
+      },
+      "@5": {
+        "recall": 0.2943,
+        "hit": 0.3189
+      },
+      "@10": {
+        "recall": 0.3762,
+        "hit": 0.4016
+      },
+      "@20": {
+        "recall": 0.4452,
+        "hit": 0.4711
+      },
+      "@30": {
+        "recall": 0.4898,
+        "hit": 0.5197
+      },
+      "@50": {
+        "recall": 0.5441,
+        "hit": 0.5758
+      },
+      "@100": {
+        "recall": 0.625,
+        "hit": 0.6539
+      }
+    },
+    "SECONDARY all-gold-are-docs subset": {
+      "n_questions": 1678,
+      "@1": {
+        "recall": 0.1293,
+        "hit": 0.1466
+      },
+      "@2": {
+        "recall": 0.2,
+        "hit": 0.2181
+      },
+      "@3": {
+        "recall": 0.2415,
+        "hit": 0.2634
+      },
+      "@5": {
+        "recall": 0.2958,
+        "hit": 0.3188
+      },
+      "@10": {
+        "recall": 0.3785,
+        "hit": 0.4023
+      },
+      "@20": {
+        "recall": 0.4469,
+        "hit": 0.4708
+      },
+      "@30": {
+        "recall": 0.4918,
+        "hit": 0.5203
+      },
+      "@50": {
+        "recall": 0.5469,
+        "hit": 0.5775
+      },
+      "@100": {
+        "recall": 0.6258,
+        "hit": 0.6532
+      }
+    },
+    "TRANSPARENCY all 2,212 questions; denominator = all gold incl. tables/unresolved (unreachable -> misses)": {
+      "n_questions": 2212,
+      "@1": {
+        "recall": 0.0988,
+        "hit": 0.1135
+      },
+      "@2": {
+        "recall": 0.1533,
+        "hit": 0.17
+      },
+      "@3": {
+        "recall": 0.1856,
+        "hit": 0.2061
+      },
+      "@5": {
+        "recall": 0.2272,
+        "hit": 0.2491
+      },
+      "@10": {
+        "recall": 0.2905,
+        "hit": 0.3137
+      },
+      "@20": {
+        "recall": 0.3434,
+        "hit": 0.368
+      },
+      "@30": {
+        "recall": 0.3778,
+        "hit": 0.406
+      },
+      "@50": {
+        "recall": 0.42,
+        "hit": 0.4498
+      },
+      "@100": {
+        "recall": 0.4815,
+        "hit": 0.5108
+      }
+    }
+  },
+  "question_counts": {
+    "total": 2212,
+    "with_doc_gold": 1728,
+    "table_only_or_unresolved_excluded_from_primary": 484
+  },
+  "S6_diagnostic_overlap_with_authors_ranking": {
+    "@5": {
+      "authors_topk_resolvable_frac": 0.5996,
+      "share_of_authors_resolvable_topk_in_our_topk": 0.7078,
+      "share_of_authors_first_k_resolvable_in_our_topk": 0.5482
+    },
+    "@10": {
+      "authors_topk_resolvable_frac": 0.6331,
+      "share_of_authors_resolvable_topk_in_our_topk": 0.706,
+      "share_of_authors_first_k_resolvable_in_our_topk": 0.5503
+    },
+    "@20": {
+      "authors_topk_resolvable_frac": 0.6536,
+      "share_of_authors_resolvable_topk_in_our_topk": 0.6917,
+      "share_of_authors_first_k_resolvable_in_our_topk": 0.5553
+    },
+    "@50": {
+      "authors_topk_resolvable_frac": 0.6676,
+      "share_of_authors_resolvable_topk_in_our_topk": 0.6946,
+      "share_of_authors_first_k_resolvable_in_our_topk": 0.5644
+    },
+    "@100": {
+      "authors_topk_resolvable_frac": 0.6728,
+      "share_of_authors_resolvable_topk_in_our_topk": 0.6967,
+      "share_of_authors_first_k_resolvable_in_our_topk": 0.6967
+    },
+    "top1_equal_to_authors_first_resolvable": 0.5357,
+    "CONTEXT_ONLY_authors_ranking_primary_metric": {
+      "n_questions": 1728,
+      "@1": {
+        "recall": 0.0675,
+        "hit": 0.0781
+      },
+      "@2": {
+        "recall": 0.1084,
+        "hit": 0.1233
+      },
+      "@3": {
+        "recall": 0.1481,
+        "hit": 0.1649
+      },
+      "@5": {
+        "recall": 0.202,
+        "hit": 0.2205
+      },
+      "@10": {
+        "recall": 0.2812,
+        "hit": 0.305
+      },
+      "@20": {
+        "recall": 0.355,
+        "hit": 0.3802
+      },
+      "@30": {
+        "recall": 0.3896,
+        "hit": 0.4172
+      },
+      "@50": {
+        "recall": 0.433,
+        "hit": 0.463
+      },
+      "@100": {
+        "recall": 0.4951,
+        "hit": 0.5284
+      }
+    }
+  }
+}

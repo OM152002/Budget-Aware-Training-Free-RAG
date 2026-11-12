@@ -1,0 +1,100 @@
+{
+  "config": {
+    "questions": 50,
+    "sampling_seed": 20261028,
+    "pool": 1704,
+    "k": 3,
+    "m": 20,
+    "budget": 4,
+    "max_retries": 1,
+    "dedup_text": true,
+    "prompt_version": "v2",
+    "temperature": 0.0,
+    "model": "mlx-community/Qwen3-4B-Instruct-2507-4bit@50d4277 (4-bit MLX)",
+    "frozen_code_sha256": {
+      "slm_controller/controller.py": "06e1b658c64726b4a53ade34c492161d27a394562b2803c7e4ff4b4e549f55b6",
+      "slm_controller/mlx_backend.py": "2e8f6bbb2d2ee9dc54083399948d4f80e7da2a89cadae8657caa5f4e40e11075",
+      "adaptive_traversal/traversal.py": "4af109e9f12bf4157c14ef1d0dd06e95da9b8ab20d2a9b22d5cafdc436b0d244",
+      "candidate_prefilter/sage_prefilter.py": "4559bdd62b1028153e6004ab02d18e8990e4653579bf62fa553a5f5dccd78a90",
+      "traversal_adapter/graph_seed_adapter.py": "c4f57a8aec65c158483a1cf2f71b7c2d657dc27df31093f26797f3a214268ae4"
+    }
+  },
+  "recall": {
+    "seeds_only": 0.25,
+    "slm_traversal": 0.365,
+    "by_category": {
+      "all_gold_in_seeds": {
+        "n": 12,
+        "seeds_only": 1.0,
+        "slm_traversal": 1.0,
+        "termination": {
+          "BUDGET_EXHAUSTED": 11,
+          "SLM_STOP": 1
+        }
+      },
+      "reachable_filtered": {
+        "n": 2,
+        "seeds_only": 0.0,
+        "slm_traversal": 0.5,
+        "termination": {
+          "BUDGET_EXHAUSTED": 2
+        }
+      },
+      "reachable_top20": {
+        "n": 8,
+        "seeds_only": 0.0,
+        "slm_traversal": 0.2188,
+        "termination": {
+          "BUDGET_EXHAUSTED": 7,
+          "SLM_STOP": 1
+        }
+      },
+      "unreachable_1hop": {
+        "n": 28,
+        "seeds_only": 0.0179,
+        "slm_traversal": 0.125,
+        "termination": {
+          "BUDGET_EXHAUSTED": 27,
+          "SLM_STOP": 1
+        }
+      }
+    }
+  },
+  "questions_gaining_gold": 7,
+  "questions_losing_gold": 0,
+  "gain_ids": [
+    "b35ea988f8953c9b",
+    "fd9bb936f922ec90",
+    "41c78d01ff06cb3f",
+    "00bd9f8b4524cae6",
+    "4064fd35c7bf3782",
+    "1aad3813f40332c6",
+    "19912390b803589d"
+  ],
+  "new_gold_items": 7,
+  "explored_nodes_that_are_gold": 7,
+  "gold_reached_only_as_duplicate_member": 1,
+  "termination_reasons": {
+    "BUDGET_EXHAUSTED": 47,
+    "SLM_STOP": 3
+  },
+  "avg_explore_steps": 3.82,
+  "avg_budget_used": 3.82,
+  "stop_rate": 0.06,
+  "invalid_first_attempts": "0/194",
+  "invalid_errors": {},
+  "retries": 0,
+  "controller_error_rate": 0.0,
+  "duplicate_text_explorations": 0,
+  "per_question_avg": {
+    "slm_calls": 3.88,
+    "input_tokens": 7911.92,
+    "output_tokens": 54.92,
+    "slm_latency_s": 33.0498,
+    "prefilter_latency_s": 4.1582,
+    "total_latency_s": 37.2145
+  },
+  "baseline_inputs_consistent_with_traversal_step1": 50,
+  "mlx_peak_memory_gb": 3.21,
+  "wall_seconds": 1899.7
+}

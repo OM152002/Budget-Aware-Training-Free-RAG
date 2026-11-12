@@ -1,0 +1,101 @@
+{
+  "config": {
+    "k": 3,
+    "m": 20,
+    "budget": 4,
+    "max_retries": 1,
+    "prompt_version": "v2",
+    "dedup_text": true,
+    "model": "mlx-community/Qwen3-4B-Instruct-2507-4bit@50d4277 (4-bit MLX, greedy)",
+    "prefilter": "SAGE _calculate_hybrid_similarities, cache-free",
+    "questions": 24,
+    "strata": {
+      "reachable_top20": 8,
+      "reachable_filtered": 8,
+      "unreachable_1hop": 8
+    }
+  },
+  "successful_traversal_rate": 1.0,
+  "termination_reasons": {
+    "BUDGET_EXHAUSTED": 21,
+    "SLM_STOP": 3
+  },
+  "avg_explore_steps": 3.708,
+  "early_stop_rate (SLM_STOP with budget left)": 0.125,
+  "controller_error_rate (queries)": 0.0,
+  "invalid_output_rate (calls)": 0.0,
+  "retries_total": 0,
+  "retry_recovered": 0,
+  "per_query_avg": {
+    "slm_calls": 3.833,
+    "input_tokens": 7877.75,
+    "output_tokens": 54.25,
+    "slm_latency_s": 33.349,
+    "prefilter_latency_s": 5.21,
+    "total_latency_s": 38.566
+  },
+  "per_call_avg": {
+    "input_tokens": 2055.1,
+    "latency_s": 8.7
+  },
+  "recall": {
+    "seed_only": 0.194,
+    "final": 0.367,
+    "by_stratum": {
+      "reachable_top20": {
+        "n": 8,
+        "seed_only": 0.144,
+        "final": 0.662,
+        "termination": {
+          "BUDGET_EXHAUSTED": 6,
+          "SLM_STOP": 2
+        }
+      },
+      "reachable_filtered": {
+        "n": 8,
+        "seed_only": 0.062,
+        "final": 0.062,
+        "termination": {
+          "BUDGET_EXHAUSTED": 8
+        }
+      },
+      "unreachable_1hop": {
+        "n": 8,
+        "seed_only": 0.375,
+        "final": 0.375,
+        "termination": {
+          "BUDGET_EXHAUSTED": 7,
+          "SLM_STOP": 1
+        }
+      }
+    }
+  },
+  "gold_discovery": {
+    "queries_with_new_gold": 6,
+    "new_gold_items": 8,
+    "explored_nodes_total": 89,
+    "explored_nodes_that_are_gold": 8
+  },
+  "selected_prefilter_rank_distribution": {
+    "1": 24,
+    "2": 6,
+    "3": 6,
+    "4": 17,
+    "5": 4,
+    "6": 5,
+    "7": 1,
+    "8": 1,
+    "9": 2,
+    "10": 3,
+    "11": 1,
+    "12": 2,
+    "14": 9,
+    "15": 2,
+    "16": 1,
+    "18": 1,
+    "20": 4
+  },
+  "peak_rss_gb": 0.55,
+  "mlx_peak_memory_gb": 3.2,
+  "wall_seconds": 925.8
+}

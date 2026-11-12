@@ -1,0 +1,78 @@
+{
+  "skipped_steps": [
+    "section plots/summary (generate_analysis_reports sections 1-3, overall)",
+    "outlier content JSONs (_save_outliers_with_content)",
+    "analyze_connected_components",
+    "Leiden community detection",
+    "KnowledgeGraph object creation/export"
+  ],
+  "candidate_pairs": 3002534,
+  "chunks_with_neighbors": 21742,
+  "neighbor_list_len_min_max": [
+    200,
+    200
+  ],
+  "thresholds_q99": {
+    "topic_similarity": 0.7353933686017989,
+    "content_similarity": 0.6946906447410583
+  },
+  "edge_type_counts": {
+    "doc-doc": 3002534
+  },
+  "outlier_rows_by_rule": {
+    "High Content Similarity AND High Topic Similarity": 18631,
+    "Entity Count Greater Than 0": 395615
+  },
+  "stored_outlier_edges_before_dedup": 414246,
+  "final_edges": 396897,
+  "edges_by_reason": {
+    "high_content_and_topic": 18631,
+    "entity_match": 378266
+  },
+  "edges_file": "output/analysis_cache/knowledge_graph/unique_edges_20261023_053523.json",
+  "nodes": 21742,
+  "stages": {
+    "init": {
+      "seconds": 1.9,
+      "rss_after_gb": 0.44,
+      "peak_so_far_gb": 0.73
+    },
+    "load_chunks": {
+      "seconds": 27.4,
+      "rss_after_gb": 2.51,
+      "peak_so_far_gb": 2.42
+    },
+    "build_hnsw_index": {
+      "seconds": 18.0,
+      "rss_after_gb": 2.51,
+      "peak_so_far_gb": 2.51
+    },
+    "analyze_chunk_similarities_k200": {
+      "seconds": 290.3,
+      "rss_after_gb": 1.32,
+      "peak_so_far_gb": 3.59
+    },
+    "similarity_dataframe": {
+      "seconds": 2.9,
+      "rss_after_gb": 1.87,
+      "peak_so_far_gb": 3.59
+    },
+    "outlier_edge_selection": {
+      "seconds": 5.7,
+      "rss_after_gb": 2.4,
+      "peak_so_far_gb": 3.59
+    },
+    "extract_edges_for_graph": {
+      "seconds": 3.3,
+      "rss_after_gb": 2.33,
+      "peak_so_far_gb": 3.59
+    }
+  },
+  "total_seconds": 349.8,
+  "peak_rss_gb": 3.59,
+  "patch_calls": {
+    "P1_calls": 0,
+    "P2_calls": 1
+  },
+  "omp_num_threads": "1"
+}

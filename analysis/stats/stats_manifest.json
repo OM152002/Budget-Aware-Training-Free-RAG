@@ -1,0 +1,38 @@
+{
+ "scores_verified_against": "analysis/scores/scoring_manifest.json",
+ "scores_sha256": {
+  "aggregates.csv": "d6433f0e82f1ac51d9ec17d22c5518b9150d97b38620a7cebce484a1cd6222e7",
+  "aggregates.json": "730c318de1200a2c507a3432fd2dd30252643ec1595be21cdcfd22dbaf569e89",
+  "invariants.json": "5a86a6f8cd87349bc49cce72b1cc61e232856ba56c5a512f5c28cc49a6609d8a",
+  "per_question.csv": "46cfd171bf3de4ca39c4fb8f9a2d4670b18625575eafbe34ed1f97c5b395e15d",
+  "per_question.jsonl": "9d0ea737a684a1ee59cb9f8c38a889ac62f0a637f73c4ae30d1969b3b017a64f",
+  "question_info.jsonl": "d348a1b8d325c3b42e6e6c0dbc3ebe97e59e4c7540cb6fdd6269cc8712aa93f3"
+ },
+ "bootstrap": {
+  "resamples": 10000,
+  "seed": 20261102,
+  "method": "percentile 95%",
+  "rng": "numpy.random.default_rng",
+  "numpy": "2.2.6",
+  "resampling": "one index matrix per population size, shared across comparisons"
+ },
+ "sign_test": "exact two-sided binomial, ties dropped, tie tolerance 1e-12",
+ "multiple_comparisons": "Holm on sign-test p within each family (D3); CIs unadjusted",
+ "families": {
+  "RQ1/T1 max-budget B=4 TEST-1704": 5,
+  "RQ1/T2 matched-expansion B=4 TEST-1704": 4,
+  "RQ1/T1 max-budget B=4 NEW-1654": 5,
+  "RQ1/T2 matched-expansion B=4 NEW-1654": 4,
+  "RQ3/T3 budget B=1 SUB-300": 5,
+  "RQ3/T3 budget B=2 SUB-300": 5,
+  "RQ3/T3 budget B=4 SUB-300": 5,
+  "RQ3/T3 budget B=8 SUB-300": 5,
+  "RQ2+RQ3/T4 ablations": 7
+ },
+ "stats_py_sha256": "c98ee8638f0202aee2e13fdcad108c0d0325a63a336e1a26cb37edeca0f84af7",
+ "outputs_sha256": {
+  "absolute_recall_ci.json": "258eb4f57e72df5f906bb16890d9105e90e86af54f64d4f9e05f992f3e6299a6",
+  "comparisons.csv": "c21a565171dd249e09618f2cd48d9bf5d82f1477fabd10900937fda6762ad3e2",
+  "comparisons.json": "432f805d865e2a6bda0d2265d752ff6c16a75573647722321429f2b9f817bdd5"
+ }
+}

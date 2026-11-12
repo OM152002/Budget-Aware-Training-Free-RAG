@@ -1,0 +1,190 @@
+
+==================== bm25_only_results.csv  rows=2212 cols=20
+dtypes: {'str': 20}
+non-ordinal columns + dtype: {'question': 'str', 'question_id': 'str', 'table_id': 'str', 'gold_docs': 'str', 'top2_results': 'str', 'top3_results': 'str', 'top5_results': 'str', 'top2_chunk_ids': 'str', 'top3_chunk_ids': 'str', 'top5_chunk_ids': 'str'}
+ordinal rank columns: 1st..10th (10)
+question_id unique: 2212 | null question_id: 0
+rank cells non-null: 22120 / 22120 | nulls: 0
+rank cell resolution: {'intro(unresolved)': 496, 'table': 3198, 'doc': 14016, 'unresolved': 4410}
+rank cells that are numeric: 0
+rows with duplicate ids in rank columns: 0
+filled rank cols per row min/median/max: 10 10 10
+unresolved examples: ['ottaqa-intro-Cardi_B_0_chunk_0_8f2643c936a6', 'ottaqa-Tamarine_Tanasugarn_1-Richard_Luton_Properties_Canberra_International_chunk_0_da22d00370f6', 'ottaqa-2010_Shanghai_International_Film_Festival_0-South_Korea_chunk_0_62c517e1a5b0']
+gold_docs parse failures: 0 | gold ids total: 3091 | per-q min/median/max: 1 1 28
+gold resolution: {'table': 708, 'doc': 2294, 'unresolved': 89}
+gold unresolved examples: ['ottaqa-Strictly_Come_Dancing__series_17__12_chunk_0_547ac9d0798b', 'ottaqa-Tamil_Nadu_legislative_assembly_election__1996_0_chunk_0_4d344c62226e', 'ottaqa-Tamil_Nadu_legislative_assembly_election__1996_0_chunk_1_b8131d5e9c58']
+  list col top2_results: len min/med/max 2/2/2 sample=['Cardi_B_0', 'Cardi_B_0', 'Ana_Peleteiro_0'] resolution=None
+  list col top3_results: len min/med/max 3/3/3 sample=['Cardi_B_0', 'Cardi_B_0', 'Vakkantham_Vamsi_0'] resolution=None
+  list col top5_results: len min/med/max 5/5/5 sample=['Cardi_B_0', 'Cardi_B_0', 'Vakkantham_Vamsi_0'] resolution=None
+  list col top2_chunk_ids: len min/med/max 2/2/2 sample=['ottaqa-intro-Cardi_B_0_chunk_0_8f2643c936a6', 'ottaqa-Cardi_B_0_chunk_0_c2402dcf2cef', 'ottaqa-Ana_Peleteiro_0-2014_World_Junior_Championships_in_Athletics_chunk_0_7f6bc17cb556'] resolution={'intro(unresolved)': 109, 'table': 1394, 'doc': 2341, 'unresolved': 580}
+  list col top3_chunk_ids: len min/med/max 3/3/3 sample=['ottaqa-intro-Cardi_B_0_chunk_0_8f2643c936a6', 'ottaqa-Cardi_B_0_chunk_0_c2402dcf2cef', 'ottaqa-Vakkantham_Vamsi_0-Sana_Khan_chunk_0_2065b3d2aa97'] resolution={'intro(unresolved)': 162, 'table': 1780, 'doc': 3718, 'unresolved': 976}
+  list col top5_chunk_ids: len min/med/max 5/5/5 sample=['ottaqa-intro-Cardi_B_0_chunk_0_8f2643c936a6', 'ottaqa-Cardi_B_0_chunk_0_c2402dcf2cef', 'ottaqa-Vakkantham_Vamsi_0-Sana_Khan_chunk_0_2065b3d2aa97'] resolution={'intro(unresolved)': 258, 'table': 2288, 'doc': 6703, 'unresolved': 1811}
+  top2_chunk_ids == first 2 rank cols: 2212/2212
+  top3_chunk_ids == first 3 rank cols: 2212/2212
+  top5_chunk_ids == first 5 rank cols: 2212/2212
+
+==================== community_expanded_dense_sparse_results.csv  rows=2212 cols=112
+dtypes: {'str': 112}
+non-ordinal columns + dtype: {'question': 'str', 'question_id': 'str', 'table_id': 'str', 'gold_docs': 'str', 'top2_results': 'str', 'top3_results': 'str', 'top5_results': 'str', 'top100_results': 'str', 'top2_chunk_ids': 'str', 'top3_chunk_ids': 'str', 'top5_chunk_ids': 'str', 'top100_chunk_ids': 'str'}
+ordinal rank columns: 1st..100th (100)
+question_id unique: 2212 | null question_id: 0
+rank cells non-null: 200144 / 221200 | nulls: 21056
+rank cell resolution: {'table': 57967, 'doc': 142177}
+rank cells that are numeric: 0
+rows with duplicate ids in rank columns: 0
+filled rank cols per row min/median/max: 18 100 100
+unresolved examples: []
+gold_docs parse failures: 0 | gold ids total: 3110 | per-q min/median/max: 1 1 28
+gold resolution: {'table': 708, 'doc': 1626, 'unresolved': 776}
+gold unresolved examples: ['ottaqa-1988_NAIA_Division_II_football_season_0-Wisconsin_State_University_Conference_chunk_0_b6059540e966', 'ottaqa-King_Edward_VII-class_battleship_0-HMS_King_Edward_VII_chunk_0_032a682d80b0', 'ottaqa-King_Edward_VII-class_battleship_0-HMS_Africa__1905__chunk_0_d72a9cc3bdc4']
+  list col top2_results: len min/med/max 2/2/2 sample=['Cardi_B_0', 'Brendan_Cole_1', 'Ana_Peleteiro_0'] resolution=None
+  list col top3_results: len min/med/max 3/3/3 sample=['Cardi_B_0', 'Brendan_Cole_1', 'Echo_(music_award)_0'] resolution=None
+  list col top5_results: len min/med/max 5/5/5 sample=['Cardi_B_0', 'Brendan_Cole_1', 'Echo_(music_award)_0'] resolution=None
+  list col top100_results: len min/med/max 100/100/100 sample=['Cardi_B_0', 'Brendan_Cole_1', 'Echo_(music_award)_0'] resolution=None
+  list col top2_chunk_ids: len min/med/max 2/2/2 sample=['ottaqa-Cardi_B_0_chunk_0_c2402dcf2cef', 'ottaqa-Brendan_Cole_1-Kelly_Brook_chunk_0_ba7ee377aa9b', 'ottaqa-Ana_Peleteiro_0-2014_World_Junior_Championships_in_Athletics_chunk_0_7f6bc17cb556'] resolution={'table': 2603, 'doc': 1821}
+  list col top3_chunk_ids: len min/med/max 3/3/3 sample=['ottaqa-Cardi_B_0_chunk_0_c2402dcf2cef', 'ottaqa-Brendan_Cole_1-Kelly_Brook_chunk_0_ba7ee377aa9b', 'ottaqa-Echo__music_award__0-Fritz_Egner_chunk_0_81b7da85e62d'] resolution={'table': 3383, 'doc': 3253}
+  list col top5_chunk_ids: len min/med/max 5/5/5 sample=['ottaqa-Cardi_B_0_chunk_0_c2402dcf2cef', 'ottaqa-Brendan_Cole_1-Kelly_Brook_chunk_0_ba7ee377aa9b', 'ottaqa-Echo__music_award__0-Fritz_Egner_chunk_0_81b7da85e62d'] resolution={'table': 4798, 'doc': 6262}
+  list col top100_chunk_ids: len min/med/max 100/100/100 sample=['ottaqa-Cardi_B_0_chunk_0_c2402dcf2cef', 'ottaqa-Brendan_Cole_1-Kelly_Brook_chunk_0_ba7ee377aa9b', 'ottaqa-Echo__music_award__0-Fritz_Egner_chunk_0_81b7da85e62d'] resolution={'table': 57967, 'doc': 142177, 'unresolved': 21056}
+  top2_chunk_ids == first 2 rank cols: 2212/2212
+  top3_chunk_ids == first 3 rank cols: 2212/2212
+  top5_chunk_ids == first 5 rank cols: 2212/2212
+  top100_chunk_ids == first 100 rank cols: 1490/2212
+
+==================== community_k_plus_k1_dense_sparse_results.csv  rows=2212 cols=113
+dtypes: {'str': 112, 'float64': 1}
+non-ordinal columns + dtype: {'question': 'str', 'question_id': 'str', 'table_id': 'str', 'gold_docs': 'str', 'top2_results': 'str', 'top3_results': 'str', 'top5_results': 'str', 'top100_results': 'str', 'top2_chunk_ids': 'str', 'top3_chunk_ids': 'str', 'top5_chunk_ids': 'str', 'top100_chunk_ids': 'str', 'retrieval_time_seconds': 'float64'}
+ordinal rank columns: 1st..100th (100)
+question_id unique: 2212 | null question_id: 0
+rank cells non-null: 200144 / 221200 | nulls: 21056
+rank cell resolution: {'table': 57967, 'doc': 142177}
+rank cells that are numeric: 0
+rows with duplicate ids in rank columns: 0
+filled rank cols per row min/median/max: 18 100 100
+unresolved examples: []
+gold_docs parse failures: 0 | gold ids total: 3110 | per-q min/median/max: 1 1 28
+gold resolution: {'table': 708, 'doc': 1626, 'unresolved': 776}
+gold unresolved examples: ['ottaqa-1988_NAIA_Division_II_football_season_0-Wisconsin_State_University_Conference_chunk_0_b6059540e966', 'ottaqa-King_Edward_VII-class_battleship_0-HMS_King_Edward_VII_chunk_0_032a682d80b0', 'ottaqa-King_Edward_VII-class_battleship_0-HMS_Africa__1905__chunk_0_d72a9cc3bdc4']
+  list col top2_results: len min/med/max 2/2/2 sample=['Cardi_B_0', 'Brendan_Cole_1', 'Ana_Peleteiro_0'] resolution=None
+  list col top3_results: len min/med/max 3/3/3 sample=['Cardi_B_0', 'Brendan_Cole_1', 'Echo_(music_award)_0'] resolution=None
+  list col top5_results: len min/med/max 5/5/5 sample=['Cardi_B_0', 'Brendan_Cole_1', 'Echo_(music_award)_0'] resolution=None
+  list col top100_results: len min/med/max 100/100/100 sample=['Cardi_B_0', 'Brendan_Cole_1', 'Echo_(music_award)_0'] resolution=None
+  list col top2_chunk_ids: len min/med/max 2/2/2 sample=['ottaqa-Cardi_B_0_chunk_0_c2402dcf2cef', 'ottaqa-Brendan_Cole_1-Kelly_Brook_chunk_0_ba7ee377aa9b', 'ottaqa-Ana_Peleteiro_0-2014_World_Junior_Championships_in_Athletics_chunk_0_7f6bc17cb556'] resolution={'table': 2603, 'doc': 1821}
+  list col top3_chunk_ids: len min/med/max 3/3/3 sample=['ottaqa-Cardi_B_0_chunk_0_c2402dcf2cef', 'ottaqa-Brendan_Cole_1-Kelly_Brook_chunk_0_ba7ee377aa9b', 'ottaqa-Echo__music_award__0-Fritz_Egner_chunk_0_81b7da85e62d'] resolution={'table': 3383, 'doc': 3253}
+  list col top5_chunk_ids: len min/med/max 5/5/5 sample=['ottaqa-Cardi_B_0_chunk_0_c2402dcf2cef', 'ottaqa-Brendan_Cole_1-Kelly_Brook_chunk_0_ba7ee377aa9b', 'ottaqa-Echo__music_award__0-Fritz_Egner_chunk_0_81b7da85e62d'] resolution={'table': 4798, 'doc': 6262}
+  list col top100_chunk_ids: len min/med/max 100/100/100 sample=['ottaqa-Cardi_B_0_chunk_0_c2402dcf2cef', 'ottaqa-Brendan_Cole_1-Kelly_Brook_chunk_0_ba7ee377aa9b', 'ottaqa-Echo__music_award__0-Fritz_Egner_chunk_0_81b7da85e62d'] resolution={'table': 57967, 'doc': 142177, 'unresolved': 21056}
+  top2_chunk_ids == first 2 rank cols: 2212/2212
+  top3_chunk_ids == first 3 rank cols: 2212/2212
+  top5_chunk_ids == first 5 rank cols: 2212/2212
+  top100_chunk_ids == first 100 rank cols: 1490/2212
+numeric cols summary:
+                           mean     min     max
+retrieval_time_seconds  0.0146  0.0035  0.1092
+
+==================== dense_sparse_average_results.csv  rows=2212 cols=110
+dtypes: {'str': 110}
+non-ordinal columns + dtype: {'question': 'str', 'question_id': 'str', 'table_id': 'str', 'gold_docs': 'str', 'top2_results': 'str', 'top3_results': 'str', 'top5_results': 'str', 'top2_chunk_ids': 'str', 'top3_chunk_ids': 'str', 'top5_chunk_ids': 'str'}
+ordinal rank columns: 1st..100th (100)
+question_id unique: 2212 | null question_id: 0
+rank cells non-null: 221200 / 221200 | nulls: 0
+rank cell resolution: {'table': 14153, 'intro(unresolved)': 2284, 'doc': 148816, 'unresolved': 55947}
+rank cells that are numeric: 0
+rows with duplicate ids in rank columns: 0
+filled rank cols per row min/median/max: 100 100 100
+unresolved examples: ['ottaqa-intro-Cardi_B_0_chunk_0_8f2643c936a6', 'ottaqa-List_of_American_films_of_1992_7-James_Belushi_chunk_0_a346405b3fdc', 'ottaqa-The_Silent_Force__TV_series__0-Austin_Willis_chunk_0_8325a4566715']
+gold_docs parse failures: 0 | gold ids total: 3110 | per-q min/median/max: 1 1 28
+gold resolution: {'table': 708, 'doc': 1626, 'unresolved': 776}
+gold unresolved examples: ['ottaqa-1988_NAIA_Division_II_football_season_0-Wisconsin_State_University_Conference_chunk_0_b6059540e966', 'ottaqa-King_Edward_VII-class_battleship_0-HMS_King_Edward_VII_chunk_0_032a682d80b0', 'ottaqa-King_Edward_VII-class_battleship_0-HMS_Africa__1905__chunk_0_d72a9cc3bdc4']
+  list col top2_results: len min/med/max 2/2/2 sample=['Cardi_B_0', 'Cardi_B_0', 'Ana_Peleteiro_0'] resolution=None
+  list col top3_results: len min/med/max 3/3/3 sample=['Cardi_B_0', 'Cardi_B_0', 'List_of_alumni_and_faculty_of_the_Royal_Melbourne_Institute_of_Technology_7'] resolution=None
+  list col top5_results: len min/med/max 5/5/5 sample=['Cardi_B_0', 'Cardi_B_0', 'List_of_alumni_and_faculty_of_the_Royal_Melbourne_Institute_of_Technology_7'] resolution=None
+  list col top2_chunk_ids: len min/med/max 2/2/2 sample=['ottaqa-Cardi_B_0_chunk_0_c2402dcf2cef', 'ottaqa-intro-Cardi_B_0_chunk_0_8f2643c936a6', 'ottaqa-intro-Ana_Peleteiro_0_chunk_0_4fd06f72090f'] resolution={'table': 1361, 'intro(unresolved)': 188, 'doc': 2381, 'unresolved': 494}
+  list col top3_chunk_ids: len min/med/max 3/3/3 sample=['ottaqa-Cardi_B_0_chunk_0_c2402dcf2cef', 'ottaqa-intro-Cardi_B_0_chunk_0_8f2643c936a6', 'ottaqa-List_of_alumni_and_faculty_of_the_Royal_Melbourne_Institute_of_Technology_7-Rove_McManus_chunk_0_3fc017f2e72e'] resolution={'table': 1793, 'intro(unresolved)': 257, 'doc': 3735, 'unresolved': 851}
+  list col top5_chunk_ids: len min/med/max 5/5/5 sample=['ottaqa-Cardi_B_0_chunk_0_c2402dcf2cef', 'ottaqa-intro-Cardi_B_0_chunk_0_8f2643c936a6', 'ottaqa-List_of_alumni_and_faculty_of_the_Royal_Melbourne_Institute_of_Technology_7-Rove_McManus_chunk_0_3fc017f2e72e'] resolution={'table': 2374, 'intro(unresolved)': 377, 'doc': 6632, 'unresolved': 1677}
+  top2_chunk_ids == first 2 rank cols: 2212/2212
+  top3_chunk_ids == first 3 rank cols: 2212/2212
+  top5_chunk_ids == first 5 rank cols: 2212/2212
+
+==================== dense_sparse_sequential_results.csv  rows=2212 cols=20
+dtypes: {'str': 20}
+non-ordinal columns + dtype: {'question': 'str', 'question_id': 'str', 'table_id': 'str', 'gold_docs': 'str', 'top2_results': 'str', 'top3_results': 'str', 'top5_results': 'str', 'top2_chunk_ids': 'str', 'top3_chunk_ids': 'str', 'top5_chunk_ids': 'str'}
+ordinal rank columns: 1st..10th (10)
+question_id unique: 2212 | null question_id: 0
+rank cells non-null: 22120 / 22120 | nulls: 0
+rank cell resolution: {'table': 3279, 'doc': 13850, 'intro(unresolved)': 585, 'unresolved': 4406}
+rank cells that are numeric: 0
+rows with duplicate ids in rank columns: 0
+filled rank cols per row min/median/max: 10 10 10
+unresolved examples: ['ottaqa-intro-Cardi_B_0_chunk_0_8f2643c936a6', 'ottaqa-2005_in_American_television_2-The_Tonight_Show_chunk_0_a64fa0b6203c', 'ottaqa-Tamarine_Tanasugarn_1-Richard_Luton_Properties_Canberra_International_chunk_0_da22d00370f6']
+gold_docs parse failures: 0 | gold ids total: 3091 | per-q min/median/max: 1 1 28
+gold resolution: {'table': 708, 'doc': 2294, 'unresolved': 89}
+gold unresolved examples: ['ottaqa-Strictly_Come_Dancing__series_17__12_chunk_0_547ac9d0798b', 'ottaqa-Tamil_Nadu_legislative_assembly_election__1996_0_chunk_0_4d344c62226e', 'ottaqa-Tamil_Nadu_legislative_assembly_election__1996_0_chunk_1_b8131d5e9c58']
+  list col top2_results: len min/med/max 2/2/2 sample=['Cardi_B_0', 'List_of_alumni_and_faculty_of_the_Royal_Melbourne_Institute_of_Technology_7', 'Ana_Peleteiro_0'] resolution=None
+  list col top3_results: len min/med/max 3/3/3 sample=['Cardi_B_0', 'List_of_alumni_and_faculty_of_the_Royal_Melbourne_Institute_of_Technology_7', 'Cornell_University_Department_of_History_2'] resolution=None
+  list col top5_results: len min/med/max 5/5/5 sample=['Cardi_B_0', 'List_of_alumni_and_faculty_of_the_Royal_Melbourne_Institute_of_Technology_7', 'Cornell_University_Department_of_History_2'] resolution=None
+  list col top2_chunk_ids: len min/med/max 2/2/2 sample=['ottaqa-Cardi_B_0_chunk_0_c2402dcf2cef', 'ottaqa-List_of_alumni_and_faculty_of_the_Royal_Melbourne_Institute_of_Technology_7-Rove_McManus_chunk_0_3fc017f2e72e', 'ottaqa-intro-Ana_Peleteiro_0_chunk_0_4fd06f72090f'] resolution={'table': 1112, 'doc': 2566, 'unresolved': 554, 'intro(unresolved)': 192}
+  list col top3_chunk_ids: len min/med/max 3/3/3 sample=['ottaqa-Cardi_B_0_chunk_0_c2402dcf2cef', 'ottaqa-List_of_alumni_and_faculty_of_the_Royal_Melbourne_Institute_of_Technology_7-Rove_McManus_chunk_0_3fc017f2e72e', 'ottaqa-Cornell_University_Department_of_History_2-S_E__Cupp_chunk_0_2edd22f293d2'] resolution={'table': 1525, 'doc': 3917, 'unresolved': 932, 'intro(unresolved)': 262}
+  list col top5_chunk_ids: len min/med/max 5/5/5 sample=['ottaqa-Cardi_B_0_chunk_0_c2402dcf2cef', 'ottaqa-List_of_alumni_and_faculty_of_the_Royal_Melbourne_Institute_of_Technology_7-Rove_McManus_chunk_0_3fc017f2e72e', 'ottaqa-Cornell_University_Department_of_History_2-S_E__Cupp_chunk_0_2edd22f293d2'] resolution={'table': 2154, 'doc': 6686, 'unresolved': 1815, 'intro(unresolved)': 405}
+  top2_chunk_ids == first 2 rank cols: 2212/2212
+  top3_chunk_ids == first 3 rank cols: 2212/2212
+  top5_chunk_ids == first 5 rank cols: 2212/2212
+
+==================== enhanced_results_final_communities_2049.csv  rows=2212 cols=48
+dtypes: {'str': 8, 'float64': 40}
+non-ordinal columns + dtype: {'question_id': 'str', 'question': 'str', 'table_id': 'str', 'top_1_communities': 'str', 'original_table_only_recall_1': 'float64', 'original_table_only_precision_1': 'float64', 'all_gold_recall_1': 'float64', 'all_gold_precision_1': 'float64', 'any_gold_recall_1': 'float64', 'any_gold_precision_1': 'float64', 'any_gold_plus_table_recall_1': 'float64', 'any_gold_plus_table_precision_1': 'float64', 'top_2_communities': 'str', 'original_table_only_recall_2': 'float64', 'original_table_only_precision_2': 'float64', 'all_gold_recall_2': 'float64', 'all_gold_precision_2': 'float64', 'any_gold_recall_2': 'float64', 'any_gold_precision_2': 'float64', 'any_gold_plus_table_recall_2': 'float64', 'any_gold_plus_table_precision_2': 'float64', 'top_3_communities': 'str', 'original_table_only_recall_3': 'float64', 'original_table_only_precision_3': 'float64', 'all_gold_recall_3': 'float64', 'all_gold_precision_3': 'float64', 'any_gold_recall_3': 'float64', 'any_gold_precision_3': 'float64', 'any_gold_plus_table_recall_3': 'float64', 'any_gold_plus_table_precision_3': 'float64', 'top_5_communities': 'str', 'original_table_only_recall_5': 'float64', 'original_table_only_precision_5': 'float64', 'all_gold_recall_5': 'float64', 'all_gold_precision_5': 'float64', 'any_gold_recall_5': 'float64', 'any_gold_precision_5': 'float64', 'any_gold_plus_table_recall_5': 'float64', 'any_gold_plus_table_precision_5': 'float64', 'top_10_communities': 'str', 'original_table_only_recall_10': 'float64', 'original_table_only_precision_10': 'float64', 'all_gold_recall_10': 'float64', 'all_gold_precision_10': 'float64', 'any_gold_recall_10': 'float64', 'any_gold_precision_10': 'float64', 'any_gold_plus_table_recall_10': 'float64', 'any_gold_plus_table_precision_10': 'float64'}
+ordinal rank columns: None
+question_id unique: 2212 | null question_id: 0
+  str col top_1_communities: sample='community_694'
+  str col top_2_communities: sample='community_694|community_2046'
+  str col top_3_communities: sample='community_694|community_2046|community_1937'
+  str col top_5_communities: sample='community_694|community_2046|community_1937|community_1281|community_538'
+  str col top_10_communities: sample='community_694|community_2046|community_1937|community_1281|community_538|community_1823|community_1461|community_1102|c
+numeric cols summary:
+                                     mean     min  max
+original_table_only_recall_1      0.3269  0.0000  1.0
+original_table_only_precision_1   0.6731  0.0000  1.0
+all_gold_recall_1                 0.1591  0.0000  1.0
+all_gold_precision_1              0.1713  0.0000  1.0
+any_gold_recall_1                 0.1713  0.0000  1.0
+any_gold_precision_1              0.8287  0.0000  1.0
+any_gold_plus_table_recall_1      0.3883  0.0000  1.0
+any_gold_plus_table_precision_1   0.6117  0.0000  1.0
+original_table_only_recall_2      0.5335  0.0000  1.0
+original_table_only_precision_2   0.7294  0.0000  1.0
+all_gold_recall_2                 0.2706  0.0000  1.0
+all_gold_precision_2              0.1483  0.0000  1.0
+any_gold_recall_2                 0.2884  0.0000  1.0
+any_gold_precision_2              0.8517  0.0000  1.0
+any_gold_plus_table_recall_2      0.6076  0.0000  1.0
+any_gold_plus_table_precision_2   0.6673  0.0000  1.0
+original_table_only_recall_3      0.6623  0.0000  1.0
+original_table_only_precision_3   0.7755  0.3333  1.0
+all_gold_recall_3                 0.3555  0.0000  1.0
+all_gold_precision_3              0.1303  0.0000  1.0
+any_gold_recall_3                 0.3797  0.0000  1.0
+any_gold_precision_3              0.8697  0.0000  1.0
+any_gold_plus_table_recall_3      0.7369  0.0000  1.0
+any_gold_plus_table_precision_3   0.7176  0.0000  1.0
+original_table_only_recall_5      0.7907  0.0000  1.0
+original_table_only_precision_5   0.8381  0.6000  1.0
+all_gold_recall_5                 0.4774  0.0000  1.0
+all_gold_precision_5              0.1057  0.0000  0.8
+any_gold_recall_5                 0.5023  0.0000  1.0
+any_gold_precision_5              0.8943  0.2000  1.0
+any_gold_plus_table_recall_5      0.8549  0.0000  1.0
+any_gold_plus_table_precision_5   0.7858  0.2000  1.0
+original_table_only_recall_10     0.9173  0.0000  1.0
+original_table_only_precision_10  0.9040  0.8000  1.0
+all_gold_recall_10                0.6413  0.0000  1.0
+all_gold_precision_10             0.0717  0.0000  0.4
+any_gold_recall_10                0.6632  0.0000  1.0
+any_gold_precision_10             0.9283  0.6000  1.0
+any_gold_plus_table_recall_10     0.9476  0.0000  1.0
+any_gold_plus_table_precision_10  0.8638  0.6000  1.0
+
+question_id set comparisons:
+bm25_only_results.csv {'bm25_only_results.csv': 2212, 'community_expanded_dense_sparse_results.csv': 2212, 'community_k_plus_k1_dense_sparse_results.csv': 2212, 'dense_sparse_average_results.csv': 2212, 'dense_sparse_sequential_results.csv': 2212, 'enhanced_results_final_communities_2049.csv': 2212}
+community_expanded_dense_sparse_results.csv {'bm25_only_results.csv': 2212, 'community_expanded_dense_sparse_results.csv': 2212, 'community_k_plus_k1_dense_sparse_results.csv': 2212, 'dense_sparse_average_results.csv': 2212, 'dense_sparse_sequential_results.csv': 2212, 'enhanced_results_final_communities_2049.csv': 2212}
+community_k_plus_k1_dense_sparse_results.csv {'bm25_only_results.csv': 2212, 'community_expanded_dense_sparse_results.csv': 2212, 'community_k_plus_k1_dense_sparse_results.csv': 2212, 'dense_sparse_average_results.csv': 2212, 'dense_sparse_sequential_results.csv': 2212, 'enhanced_results_final_communities_2049.csv': 2212}
+dense_sparse_average_results.csv {'bm25_only_results.csv': 2212, 'community_expanded_dense_sparse_results.csv': 2212, 'community_k_plus_k1_dense_sparse_results.csv': 2212, 'dense_sparse_average_results.csv': 2212, 'dense_sparse_sequential_results.csv': 2212, 'enhanced_results_final_communities_2049.csv': 2212}
+dense_sparse_sequential_results.csv {'bm25_only_results.csv': 2212, 'community_expanded_dense_sparse_results.csv': 2212, 'community_k_plus_k1_dense_sparse_results.csv': 2212, 'dense_sparse_average_results.csv': 2212, 'dense_sparse_sequential_results.csv': 2212, 'enhanced_results_final_communities_2049.csv': 2212}
+enhanced_results_final_communities_2049.csv {'bm25_only_results.csv': 2212, 'community_expanded_dense_sparse_results.csv': 2212, 'community_k_plus_k1_dense_sparse_results.csv': 2212, 'dense_sparse_average_results.csv': 2212, 'dense_sparse_sequential_results.csv': 2212, 'enhanced_results_final_communities_2049.csv': 2212}

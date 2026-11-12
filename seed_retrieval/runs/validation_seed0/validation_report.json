@@ -1,0 +1,28 @@
+{
+  "corpus_size": 21742,
+  "corpus_equals_graph_nodes": true,
+  "hnsw_ntotal": 21742,
+  "hnsw_params": {
+    "M": 32,
+    "efConstruction": 200,
+    "efSearch": 100
+  },
+  "cases": 70,
+  "order_mismatch": 0,
+  "length_mismatch": 0,
+  "field_mismatch": 0,
+  "max_score_abs_diff": 0.0,
+  "returned_len_by_k": {
+    "100": [
+      100
+    ],
+    "20": [
+      20
+    ],
+    "200": [
+      200
+    ]
+  },
+  "PASS": true,
+  "elapsed_s": 24.3
+}

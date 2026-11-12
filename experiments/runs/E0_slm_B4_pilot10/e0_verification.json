@@ -1,0 +1,43 @@
+{
+  "questions": 10,
+  "identical_excluding_timing": 10,
+  "mismatches": [],
+  "fields_compared": [
+    "budget_allocated",
+    "budget_used",
+    "explore_steps",
+    "explored_text_duplicate_members",
+    "input_tokens",
+    "invalid_outputs",
+    "output_tokens",
+    "query",
+    "query_id",
+    "retries",
+    "retrieved_nodes",
+    "seed_nodes",
+    "slm_calls",
+    "steps",
+    "termination_reason",
+    "traversal_history"
+  ],
+  "raw_outputs_identical": true,
+  "order_matches_pilot50_prefix": true,
+  "frozen_code_hashes_match_heldout": {
+    "slm_controller/controller.py": true,
+    "slm_controller/mlx_backend.py": true,
+    "adaptive_traversal/traversal.py": true,
+    "candidate_prefilter/sage_prefilter.py": true,
+    "traversal_adapter/graph_seed_adapter.py": true
+  },
+  "manifest_fingerprints": {
+    "code": 6,
+    "runner_code": 3,
+    "artifacts": 6,
+    "model": 3,
+    "libraries": 7,
+    "python": "3.13.1"
+  },
+  "tampered_config_aborts": true,
+  "abort_message_first_line": "config.B: stored=4 current=8",
+  "ALL_PASS": true
+}

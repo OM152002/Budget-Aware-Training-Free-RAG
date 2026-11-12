@@ -1,0 +1,73 @@
+{
+  "experiment": "E0",
+  "method": "M5_slm_full",
+  "config": {
+    "k": 3,
+    "m": 20,
+    "B": 4,
+    "max_retries": 1,
+    "dedup_text": true,
+    "prompt_version": "v2",
+    "temperature": 0.0,
+    "max_new_tokens": 48,
+    "max_passage_chars": 300,
+    "include_history": true,
+    "include_budget": true,
+    "random_seed": null,
+    "prefilter": "SAGE _calculate_hybrid_similarities, cache-free"
+  },
+  "question_set": {
+    "name": "PILOT-50",
+    "slice": [
+      0,
+      10
+    ],
+    "parent_ids_sha256": "764d3723d9b24e723cdcfe22e3a9dd03f33c933056ae9de084e97d7d18ad112c",
+    "n": 10,
+    "ids_sha256": "f775d78eab046be0deea4657928a676e9528fffa0f0106c31c0ac1b9ee3086b5"
+  },
+  "fingerprints": {
+    "code": {
+      "slm_controller/controller.py": "06e1b658c64726b4a53ade34c492161d27a394562b2803c7e4ff4b4e549f55b6",
+      "slm_controller/mlx_backend.py": "2e8f6bbb2d2ee9dc54083399948d4f80e7da2a89cadae8657caa5f4e40e11075",
+      "adaptive_traversal/traversal.py": "4af109e9f12bf4157c14ef1d0dd06e95da9b8ab20d2a9b22d5cafdc436b0d244",
+      "candidate_prefilter/sage_prefilter.py": "4559bdd62b1028153e6004ab02d18e8990e4653579bf62fa553a5f5dccd78a90",
+      "traversal_adapter/graph_seed_adapter.py": "c4f57a8aec65c158483a1cf2f71b7c2d657dc27df31093f26797f3a214268ae4",
+      "sage/scripts/analysis/graph_enhanced_accuracy_analyzer.py": "1086164edfd5b4c2da4a3a10834dc30b46bedc568c9445073db3f836642a203d"
+    },
+    "runner_code": {
+      "experiments/runner.py": "adf31d2d11d579bd31e868c7bc52f0a3c5c55ba846873babd667cbf19785380b",
+      "experiments/run_experiment.py": "80e79e974af4233425db1e41c67b14e5e94f09b0f96cae4b985ae0aba7a835bf",
+      "experiments/question_sets.py": "36d03c4eba77f8e0d31e043c6fc8f09c351d77ef57d88b17f9adc3f1ee1dc851"
+    },
+    "artifacts": {
+      "graph_reconstruction/runs/docgraph_k200_q99_20261023/output/analysis_cache/knowledge_graph/unique_edges_20261023_053523.json": "427260401a30be704666dc04fab78c2f633abbe304940fe30c48115d261c7ab7",
+      "graph_reconstruction/runs/docgraph_k200_q99_20261023/output/indexing_filtered.csv": "f7b1a9acd608ec1faa47ae4ec42d00136cf5c900c09a54903c378cc7fdcae70b",
+      "seed_retrieval/runs/seeds_fusionA_top100_seed0_runA/seeds_top100.csv": "a53d2d1974ab7f3793b0d26db7793ac9399d738e9132f6cbe41a8a8dd0e5b7e5",
+      "seed_retrieval/runs/seeds_fusionA_top100_seed0_runA/seeds_top100_scores.jsonl": "c2fd2f80b5308675839a26beb757134780e54a6e0f5b20e0cede6eaaab596dec",
+      "experiments/question_sets.json": "32ebb25d6fe5ad755b221b7ea15df73ce7eb7e4a1044a52abe84fe62aff5678c",
+      "sage_hf_artifacts/extracted/docs_chunks_1": "59c5ed9ef5a9c35a2ca013b3045ebbdaea2ced973314273066a9c5de1bbb05b8"
+    },
+    "model": {
+      "repo": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+      "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+      "files": {
+        "model.safetensors": "2a73c6c248601ab904e035548abd8e6abb65ea27dcb5f342fb0a8910eb44173f",
+        "config.json": "574349e5a343236546fda55e4744a76e181f534182d7dc60ff1bad7e7a502849",
+        "tokenizer.json": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+        "chat_template.jinja": "40c21f34cf67d8c760ef72f8ad3ae5afad514299d4b06e91dd9a8d705af7b541"
+      }
+    },
+    "libraries": {
+      "mlx": "0.32.4",
+      "mlx-lm": "0.32.2",
+      "torch": "2.14.1",
+      "sentence-transformers": "6.1.0",
+      "transformers": "5.19.0",
+      "numpy": "2.2.6",
+      "pandas": "3.0.6"
+    },
+    "python": "3.13.1"
+  },
+  "created_at": "2026-10-28T08:49:13-0700"
+}

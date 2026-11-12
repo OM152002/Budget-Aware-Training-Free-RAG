@@ -1,0 +1,429 @@
+{
+  "before": {
+    "run": "runs/pilot_k3_m20_B4",
+    "prompt_version": null,
+    "dedup_text": null,
+    "questions": 24,
+    "invalid_first_attempts": "31/94",
+    "invalid_first_attempt_errors": {
+      "VISITED_NODE": 28,
+      "NODE_NOT_IN_CANDIDATES": 3
+    },
+    "retries": 31,
+    "retry_recovered_calls": 31,
+    "controller_errors": 0,
+    "termination": {
+      "BUDGET_EXHAUSTED": 22,
+      "SLM_STOP": 2
+    },
+    "stop_rate (SLM_STOP)": 0.083,
+    "avg_explore_steps": 3.833,
+    "explored_nodes": 92,
+    "duplicate_text_explorations": 11,
+    "avg_slm_calls": 5.208,
+    "avg_input_tokens": 10429.792,
+    "avg_output_tokens": 74.042,
+    "avg_slm_latency_s": 43.341,
+    "avg_total_latency_s": 49.509,
+    "recall_seed": 0.194,
+    "recall_final": 0.348,
+    "recall_by_stratum": {
+      "reachable_top20": {
+        "seed": 0.144,
+        "final": 0.606
+      },
+      "reachable_filtered": {
+        "seed": 0.062,
+        "final": 0.062
+      },
+      "unreachable_1hop": {
+        "seed": 0.375,
+        "final": 0.375
+      }
+    },
+    "queries_with_new_gold": 5,
+    "new_gold_items": 8,
+    "explored_gold": 8
+  },
+  "after": {
+    "run": "runs/pilot_k3_m20_B4_v2",
+    "prompt_version": "v2",
+    "dedup_text": true,
+    "questions": 24,
+    "invalid_first_attempts": "0/92",
+    "invalid_first_attempt_errors": {},
+    "retries": 0,
+    "retry_recovered_calls": 0,
+    "controller_errors": 0,
+    "termination": {
+      "BUDGET_EXHAUSTED": 21,
+      "SLM_STOP": 3
+    },
+    "stop_rate (SLM_STOP)": 0.125,
+    "avg_explore_steps": 3.708,
+    "explored_nodes": 89,
+    "duplicate_text_explorations": 0,
+    "avg_slm_calls": 3.833,
+    "avg_input_tokens": 7877.75,
+    "avg_output_tokens": 54.25,
+    "avg_slm_latency_s": 33.349,
+    "avg_total_latency_s": 38.566,
+    "recall_seed": 0.194,
+    "recall_final": 0.367,
+    "recall_by_stratum": {
+      "reachable_top20": {
+        "seed": 0.144,
+        "final": 0.662
+      },
+      "reachable_filtered": {
+        "seed": 0.062,
+        "final": 0.062
+      },
+      "unreachable_1hop": {
+        "seed": 0.375,
+        "final": 0.375
+      }
+    },
+    "queries_with_new_gold": 6,
+    "new_gold_items": 8,
+    "explored_gold": 8
+  },
+  "per_question": [
+    {
+      "query_id": "a2b4fbe23242e718",
+      "stratum": "reachable_top20",
+      "before": [
+        "BUDGET_EXHAUSTED",
+        4,
+        0.0
+      ],
+      "after": [
+        "BUDGET_EXHAUSTED",
+        4,
+        0.5
+      ]
+    },
+    {
+      "query_id": "b5aa41f07d65d75a",
+      "stratum": "reachable_top20",
+      "before": [
+        "BUDGET_EXHAUSTED",
+        4,
+        0.0
+      ],
+      "after": [
+        "BUDGET_EXHAUSTED",
+        4,
+        0.0
+      ]
+    },
+    {
+      "query_id": "15431bf1930844fd",
+      "stratum": "reachable_top20",
+      "before": [
+        "BUDGET_EXHAUSTED",
+        4,
+        0.5
+      ],
+      "after": [
+        "BUDGET_EXHAUSTED",
+        4,
+        0.5
+      ]
+    },
+    {
+      "query_id": "6af5cbbb373e6a8b",
+      "stratum": "reachable_top20",
+      "before": [
+        "BUDGET_EXHAUSTED",
+        4,
+        1.0
+      ],
+      "after": [
+        "BUDGET_EXHAUSTED",
+        4,
+        1.0
+      ]
+    },
+    {
+      "query_id": "ddd4c62440ac714b",
+      "stratum": "reachable_top20",
+      "before": [
+        "BUDGET_EXHAUSTED",
+        4,
+        1.0
+      ],
+      "after": [
+        "BUDGET_EXHAUSTED",
+        4,
+        1.0
+      ]
+    },
+    {
+      "query_id": "d6d92f76ebb70a9a",
+      "stratum": "reachable_top20",
+      "before": [
+        "BUDGET_EXHAUSTED",
+        4,
+        0.35
+      ],
+      "after": [
+        "SLM_STOP",
+        3,
+        0.3
+      ]
+    },
+    {
+      "query_id": "ae17a71c6fb3c46b",
+      "stratum": "reachable_top20",
+      "before": [
+        "SLM_STOP",
+        2,
+        1.0
+      ],
+      "after": [
+        "SLM_STOP",
+        2,
+        1.0
+      ]
+    },
+    {
+      "query_id": "8199f98cf43a29b1",
+      "stratum": "reachable_top20",
+      "before": [
+        "BUDGET_EXHAUSTED",
+        4,
+        1.0
+      ],
+      "after": [
+        "BUDGET_EXHAUSTED",
+        4,
+        1.0
+      ]
+    },
+    {
+      "query_id": "f8e890d86aa62836",
+      "stratum": "reachable_filtered",
+      "before": [
+        "BUDGET_EXHAUSTED",
+        4,
+        0.5
+      ],
+      "after": [
+        "BUDGET_EXHAUSTED",
+        4,
+        0.5
+      ]
+    },
+    {
+      "query_id": "84d1e966e7262908",
+      "stratum": "reachable_filtered",
+      "before": [
+        "BUDGET_EXHAUSTED",
+        4,
+        0.0
+      ],
+      "after": [
+        "BUDGET_EXHAUSTED",
+        4,
+        0.0
+      ]
+    },
+    {
+      "query_id": "55e4f6bd134799a3",
+      "stratum": "reachable_filtered",
+      "before": [
+        "BUDGET_EXHAUSTED",
+        4,
+        0.0
+      ],
+      "after": [
+        "BUDGET_EXHAUSTED",
+        4,
+        0.0
+      ]
+    },
+    {
+      "query_id": "999621d7df6c5175",
+      "stratum": "reachable_filtered",
+      "before": [
+        "BUDGET_EXHAUSTED",
+        4,
+        0.0
+      ],
+      "after": [
+        "BUDGET_EXHAUSTED",
+        4,
+        0.0
+      ]
+    },
+    {
+      "query_id": "e5f74ed9a6f0874c",
+      "stratum": "reachable_filtered",
+      "before": [
+        "BUDGET_EXHAUSTED",
+        4,
+        0.0
+      ],
+      "after": [
+        "BUDGET_EXHAUSTED",
+        4,
+        0.0
+      ]
+    },
+    {
+      "query_id": "eb711e0a8f280dae",
+      "stratum": "reachable_filtered",
+      "before": [
+        "BUDGET_EXHAUSTED",
+        4,
+        0.0
+      ],
+      "after": [
+        "BUDGET_EXHAUSTED",
+        4,
+        0.0
+      ]
+    },
+    {
+      "query_id": "3dc635e40c46f4b4",
+      "stratum": "reachable_filtered",
+      "before": [
+        "BUDGET_EXHAUSTED",
+        4,
+        0.0
+      ],
+      "after": [
+        "BUDGET_EXHAUSTED",
+        4,
+        0.0
+      ]
+    },
+    {
+      "query_id": "87ef6089286a4408",
+      "stratum": "reachable_filtered",
+      "before": [
+        "SLM_STOP",
+        2,
+        0.0
+      ],
+      "after": [
+        "BUDGET_EXHAUSTED",
+        4,
+        0.0
+      ]
+    },
+    {
+      "query_id": "39e61d9fc26136ad",
+      "stratum": "unreachable_1hop",
+      "before": [
+        "BUDGET_EXHAUSTED",
+        4,
+        1.0
+      ],
+      "after": [
+        "BUDGET_EXHAUSTED",
+        4,
+        1.0
+      ]
+    },
+    {
+      "query_id": "74015d436de03dd8",
+      "stratum": "unreachable_1hop",
+      "before": [
+        "BUDGET_EXHAUSTED",
+        4,
+        0.0
+      ],
+      "after": [
+        "BUDGET_EXHAUSTED",
+        4,
+        0.0
+      ]
+    },
+    {
+      "query_id": "39f1363fe3a9b3d4",
+      "stratum": "unreachable_1hop",
+      "before": [
+        "BUDGET_EXHAUSTED",
+        4,
+        0.0
+      ],
+      "after": [
+        "BUDGET_EXHAUSTED",
+        4,
+        0.0
+      ]
+    },
+    {
+      "query_id": "28a009738a90dbc4",
+      "stratum": "unreachable_1hop",
+      "before": [
+        "BUDGET_EXHAUSTED",
+        4,
+        0.0
+      ],
+      "after": [
+        "BUDGET_EXHAUSTED",
+        4,
+        0.0
+      ]
+    },
+    {
+      "query_id": "faf0314bac249dac",
+      "stratum": "unreachable_1hop",
+      "before": [
+        "BUDGET_EXHAUSTED",
+        4,
+        0.0
+      ],
+      "after": [
+        "BUDGET_EXHAUSTED",
+        4,
+        0.0
+      ]
+    },
+    {
+      "query_id": "64baf071f800206d",
+      "stratum": "unreachable_1hop",
+      "before": [
+        "BUDGET_EXHAUSTED",
+        4,
+        1.0
+      ],
+      "after": [
+        "SLM_STOP",
+        0,
+        1.0
+      ]
+    },
+    {
+      "query_id": "dcdf89436e31c4fe",
+      "stratum": "unreachable_1hop",
+      "before": [
+        "BUDGET_EXHAUSTED",
+        4,
+        1.0
+      ],
+      "after": [
+        "BUDGET_EXHAUSTED",
+        4,
+        1.0
+      ]
+    },
+    {
+      "query_id": "f4d7f3a1e92e7474",
+      "stratum": "unreachable_1hop",
+      "before": [
+        "BUDGET_EXHAUSTED",
+        4,
+        0.0
+      ],
+      "after": [
+        "BUDGET_EXHAUSTED",
+        4,
+        0.0
+      ]
+    }
+  ]
+}

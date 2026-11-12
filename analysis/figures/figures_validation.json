@@ -1,0 +1,56 @@
+{
+ "F1: every plotted recall, CI and M3 \u00b1SD band equals the canonical source": {
+  "PASS": true,
+  "mismatches": 0
+ },
+ "F2: every plotted (cost, recall) point equals the canonical source": {
+  "PASS": true,
+  "mismatches": 0
+ },
+ "F2: frontier = exactly the non-dominated points (independent check)": {
+  "PASS": true
+ },
+ "F3: hop-1 and hop-2+ bars equal the canonical aggregates (= T5b); hop-0 equals the seeds' gold; categories sum to totals": {
+  "PASS": true
+ },
+ "F3: hop 0 identical for M4 and M5 in every category": {
+  "PASS": true
+ },
+ "F3: 'all gold in seeds' category has no discovered gold": {
+  "PASS": true
+ },
+ "F4: total explorations plotted = total M5 expansions on TEST-1704 (= mean expansions \u00d7 n)": {
+  "PASS": true,
+  "plotted": 6318,
+  "expected": 6318
+ },
+ "F4: no rank outside 1..20": {
+  "PASS": true
+ },
+ "F5: 'All questions' W/T/L equals the frozen T1 comparison (comparisons.json)": {
+  "PASS": true,
+  "plotted": [
+   116,
+   1543,
+   45
+  ],
+  "canonical": [
+   116,
+   1543,
+   45
+  ]
+ },
+ "F5: categories sum to the all-questions bar": {
+  "PASS": true
+ },
+ "every figure states its population and budget": {
+  "PASS": true
+ },
+ "ID Recall labelled primary on every recall axis": {
+  "PASS": true
+ },
+ "ALL_PASS": true,
+ "T1\u2013T6 files unchanged": {
+  "PASS": true
+ }
+}

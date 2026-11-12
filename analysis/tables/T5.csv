@@ -1,0 +1,27 @@
+panel,population,B,condition,gold_hop0,gold_hop1,gold_hop2plus,new_gold_total,wasted_expansions_mean,expansions_mean,n,id_recall_all_gold_in_seeds,id_recall_reachable_top20,id_recall_reachable_filtered,id_recall_unreachable_1hop,n_all_gold_in_seeds,n_reachable_top20,n_reachable_filtered,n_unreachable_1hop
+hop depth + wasted,TEST-1704,4,M1|None|4|max_budget|None,478,107,100,207,3.738849765258216,4.0,1704,,,,,,,,
+hop depth + wasted,TEST-1704,4,M2|faithful|4|max_budget|None,478,152,0,152,3.7875586854460095,3.977112676056338,1704,,,,,,,,
+hop depth + wasted,TEST-1704,4,M3_mean|None|4|max_budget|None,478,62.33333333333333,7.666666666666666,70.0,3.902973395931143,3.9976525821596245,1704,,,,,,,,
+hop depth + wasted,TEST-1704,4,M4|None|4|max_budget|None,478,135,40,175,3.7687793427230045,3.9976525821596245,1704,,,,,,,,
+hop depth + wasted,TEST-1704,4,M5|None|4|max_budget|None,478,190,55,245,3.420774647887324,3.7077464788732395,1704,,,,,,,,
+hop depth + wasted,TEST-1704,4,A3|None|4|max_budget|None,478,204,56,260,3.6954225352112675,3.9976525821596245,1704,,,,,,,,
+recall by category,TEST-1704,4,M0|None|0|max_budget|None,,,,,,,,1.0,0.04735761314708683,0.03453453453453453,0.01130624245287972,382,304,111,907
+recall by category,TEST-1704,4,M1|None|4|max_budget|None,,,,,,,,1.0,0.28057835804546327,0.10960960960960961,0.09906153199979,382,304,111,907
+recall by category,TEST-1704,4,M2|faithful|4|max_budget|None,,,,,,,,1.0,0.42815101565101565,0.06606606606606606,0.01130624245287972,382,304,111,907
+recall by category,TEST-1704,4,M3_mean|None|4|max_budget|None,,,,,,,,1.0,0.18518276922882185,0.04604604604604604,0.019575261195988868,382,304,111,907
+recall by category,TEST-1704,4,M4|None|4|max_budget|None,,,,,,,,1.0,0.38382887215124056,0.039039039039039033,0.047827741901611806,382,304,111,907
+recall by category,TEST-1704,4,M5|None|4|max_budget|None,,,,,,,,1.0,0.5312731311086574,0.1006006006006006,0.0664330340736074,382,304,111,907
+recall by category,TEST-1704,4,A3|None|4|max_budget|None,,,,,,,,1.0,0.5444594148541517,0.1006006006006006,0.0664330340736074,382,304,111,907
+hop depth + wasted,NEW-1654,4,M1|None|4|max_budget|None,463,107,96,203,3.735187424425635,4.0,1654,,,,,,,,
+hop depth + wasted,NEW-1654,4,M2|faithful|4|max_budget|None,463,148,0,148,3.7896009673518742,3.9788391777509067,1654,,,,,,,,
+hop depth + wasted,NEW-1654,4,M3_mean|None|4|max_budget|None,463,60.666666666666664,7.333333333333333,68.0,3.903063280935107,3.9975816203143895,1654,,,,,,,,
+hop depth + wasted,NEW-1654,4,M4|None|4|max_budget|None,463,132,37,169,3.770858524788392,3.9975816203143895,1654,,,,,,,,
+hop depth + wasted,NEW-1654,4,M5|None|4|max_budget|None,463,186,52,238,3.4201934703748487,3.704353083434099,1654,,,,,,,,
+hop depth + wasted,NEW-1654,4,A3|None|4|max_budget|None,463,200,53,253,3.6977025392986698,3.9975816203143895,1654,,,,,,,,
+recall by category,NEW-1654,4,M0|None|0|max_budget|None,,,,,,,,1.0,0.048637548637548635,0.035168195718654434,0.011097567582209221,370,296,109,879
+recall by category,NEW-1654,4,M1|None|4|max_budget|None,,,,,,,,1.0,0.28816155691155687,0.11162079510703363,0.09766644997020424,370,296,109,879
+recall by category,NEW-1654,4,M2|faithful|4|max_budget|None,,,,,,,,1.0,0.4295875295875296,0.0672782874617737,0.011097567582209221,370,296,109,879
+recall by category,NEW-1654,4,M3_mean|None|4|max_budget|None,,,,,,,,1.0,0.1862462674962675,0.046890927624872576,0.019250771981147406,370,296,109,879
+recall by category,NEW-1654,4,M4|None|4|max_budget|None,,,,,,,,1.0,0.3874458686958687,0.039755351681957186,0.04593829568232299,370,296,109,879
+recall by category,NEW-1654,4,M5|None|4|max_budget|None,,,,,,,,1.0,0.5397197022197022,0.09327217125382263,0.06456741968687361,370,296,109,879
+recall by category,NEW-1654,4,A3|None|4|max_budget|None,,,,,,,,1.0,0.5532623720123719,0.09327217125382263,0.06456741968687361,370,296,109,879

@@ -1,0 +1,42 @@
+# Environment, upstream code and raw data (obtained separately; see README)
+.venv-sage/
+sage/
+sage_hf_artifacts/
+
+# Editor / tool / OS files
+.claude/
+.cmem-projects/
+.DS_Store
+__pycache__/
+*.pyc
+CLAUDE_CHECKPOINT.md
+
+# Caches and large intermediate artifacts
+*.pkl
+traversal_adapter/cache/
+graph_reconstruction/runs/*/output/
+candidate_prefilter/runs/**/rankings.jsonl
+seed_retrieval/runs/_superseded_hash_randomized/
+seed_retrieval/runs/**/seeds_top100.csv
+seed_retrieval/runs/**/seeds_top100_scores.jsonl
+
+# Large per-question experiment outputs (summaries, manifests and analysis results are kept)
+experiments/runs/**/results.jsonl
+analysis/scores/per_question.jsonl
+analysis/scores/per_question.csv
+
+# Logs / progress-bar output
+*.stderr
+*.stdout
+*.log
+
+# Smoke tests (development checks only, not results)
+experiments/smoke*/
+experiments/smoke_all.sh
+experiments/verify_smoke.py
+traversal_adapter/smoke_test.py
+traversal_adapter/smoke_report.json
+phase1_repro/smoke_test.py
+phase1_repro/probe.py
+phase1_repro/toy_corpus.py
+phase1_repro/output/

@@ -1,0 +1,20 @@
+measure,v1,v2
+Prompt interface,"v1: evidence labeled E1.., candidates C1..","v2: evidence unlabeled, candidates A1..; budget stated as a maximum"
+Duplicate-text handling,off,on (same-text candidates collapsed; evidence-text duplicates dropped)
+"ID Recall, seeds only",0.1938,0.1938
+"ID Recall, final (primary)",0.3479,0.3667
+"Text Recall, final (diagnostic)",0.4104,0.4083
+"ID Recall, stratum reachable_top20 (n = 8)",0.6062,0.6625
+"ID Recall, stratum reachable_filtered (n = 8)",0.0625,0.0625
+"ID Recall, stratum unreachable_1hop (n = 8)",0.3750,0.3750
+Questions gaining gold over seeds,5,6
+New gold passages found,8,8
+Expansions per question,3.83,3.71
+Duplicate-text explorations (total),11,0
+Invalid first attempts / first attempts,31/94,0/92
+Retries,31,0
+CONTROLLER_ERROR,0,0
+SLM_STOP (questions),2,3
+SLM calls per question,5.21,3.83
+Input tokens per question,10430,7878
+Total latency per question (s),49.5,38.6

@@ -1,0 +1,64 @@
+{
+  "batch_files": 301,
+  "pairs_in_batches": 3002534,
+  "thresholds_numpy": {
+    "topic_similarity": 0.7353933686017989,
+    "content_similarity": 0.6946906447410583
+  },
+  "thresholds_match_build": true,
+  "expected_edges": {
+    "AND_rule": 18631,
+    "entity_rule": 395615,
+    "both": 17349,
+    "union": 396897
+  },
+  "edges_file_count": 396897,
+  "V8_edges_file_equals_independent_rule": true,
+  "V8_missing_vs_rule": 0,
+  "V8_extra_vs_rule": 0,
+  "V8_entity_count_field_all_zero_quirk_L3045": true,
+  "no_self_loops": true,
+  "no_duplicate_undirected_edges": true,
+  "edge_ids_unique": true,
+  "edge_keys": [
+    "content_similarity",
+    "edge_id",
+    "edge_type",
+    "entity_count",
+    "entity_relationship_overlap",
+    "event_count",
+    "reason",
+    "semantic_similarity",
+    "source_chunk_id",
+    "target_chunk_id",
+    "topic_overlap",
+    "topic_similarity"
+  ],
+  "V5_near_threshold_pairs_not_saved_by_entity_rule": 14,
+  "graph": {
+    "nodes": 21742,
+    "edges": 396897,
+    "endpoints_all_in_doc_set": true,
+    "isolated_nodes": 680,
+    "degree_mean": 36.51,
+    "degree_median": 26.0,
+    "degree_p99": 161.0,
+    "degree_max": 329,
+    "components": 725,
+    "largest_component": 20965,
+    "largest_component_frac": 0.9643
+  },
+  "entity_count_distribution_over_edges": {
+    "1": 339022,
+    "2": 41076,
+    "3": 6643,
+    "4": 2734,
+    "5": 1443,
+    "6": 1691,
+    "7": 628,
+    "8": 1090,
+    "9": 474,
+    "10": 183
+  },
+  "ALL_PASS": true
+}

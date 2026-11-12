@@ -1,0 +1,40 @@
+{
+ "all recall / \u0394 / CI / W-T-L / Holm p cells equal canonical sources": {
+  "PASS": true,
+  "mismatches": 0
+ },
+ "population sizes": {
+  "PASS": true
+ },
+ "W + T + L = n for every paired row": {
+  "PASS": true
+ },
+ "T4: Holm p present for family rows, absent for supplementary rows": {
+  "PASS": true
+ },
+ "T1/T2 cover both TEST-1704 and NEW-1654; T3a/T4 SUB-300 rows exist for every budget": {
+  "PASS": true
+ },
+ "T5: hop1 + hop2+ = new gold for every method": {
+  "PASS": true
+ },
+ "T5: category sizes sum to the population": {
+  "PASS": true
+ },
+ "T5: size-weighted category recall equals canonical overall recall": {
+  "PASS": true
+ },
+ "T5: all_gold_in_seeds category has recall 1.0 for every method": {
+  "PASS": true
+ },
+ "T6: zero-error claims match aggregates": {
+  "PASS": true
+ },
+ "ID Recall labelled primary and Text Recall labelled diagnostic in every table": {
+  "PASS": true
+ },
+ "no binary significance label in any table": {
+  "PASS": true
+ },
+ "ALL_PASS": true
+}

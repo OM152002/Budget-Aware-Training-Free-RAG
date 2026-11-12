@@ -1,0 +1,22 @@
+{
+ "figures_py_sha256": "97f84cbc5a1c92cf4767b37c3ce11fe90648235f8c5c6b04a44c1332244d7625",
+ "inputs_sha256": {
+  "aggregates.csv": "d6433f0e82f1ac51d9ec17d22c5518b9150d97b38620a7cebce484a1cd6222e7",
+  "aggregates.json": "730c318de1200a2c507a3432fd2dd30252643ec1595be21cdcfd22dbaf569e89",
+  "invariants.json": "5a86a6f8cd87349bc49cce72b1cc61e232856ba56c5a512f5c28cc49a6609d8a",
+  "per_question.csv": "46cfd171bf3de4ca39c4fb8f9a2d4670b18625575eafbe34ed1f97c5b395e15d",
+  "per_question.jsonl": "9d0ea737a684a1ee59cb9f8c38a889ac62f0a637f73c4ae30d1969b3b017a64f",
+  "question_info.jsonl": "d348a1b8d325c3b42e6e6c0dbc3ebe97e59e4c7540cb6fdd6269cc8712aa93f3",
+  "absolute_recall_ci.json": "258eb4f57e72df5f906bb16890d9105e90e86af54f64d4f9e05f992f3e6299a6",
+  "comparisons.csv": "c21a565171dd249e09618f2cd48d9bf5d82f1477fabd10900937fda6762ad3e2",
+  "comparisons.json": "432f805d865e2a6bda0d2265d752ff6c16a75573647722321429f2b9f817bdd5"
+ },
+ "outputs_sha256": {
+  "F1_data.csv": "f1249ad0dfd954bed9c98a4f7c32868378af80279d531d86cb51474620a6e014",
+  "F2_data.csv": "7a1a98d86ac9703d583430165adc34fe5d822abf2cd1fb500ee976cd8bd2be24",
+  "F3_data.csv": "dae1ce583878fff8afde3f283de3fb790e48d67c7d163824ef1bcfd3c759f9d1",
+  "F4_data.csv": "9f0e4706d579fbcd75d8b242d04bdb400c5681b7cf49a46d595b97079601bea3",
+  "F5_data.csv": "41e87ad1bb5395bb314b381925d1c22a3c6d1edcbc2186b66f12926e5c7c1282",
+  "figures_validation.json": "92e6ae8ffbd8e5bb8c3e443c2f7197122202b2a5993658602b012c20a76d6287"
+ }
+}

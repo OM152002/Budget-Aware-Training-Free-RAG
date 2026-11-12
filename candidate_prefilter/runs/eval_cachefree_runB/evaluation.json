@@ -1,0 +1,243 @@
+{
+  "config": {
+    "scorer": "GraphEnhancedAccuracyAnalyzer._calculate_hybrid_similarities (0.40 emb + 0.60 BM25)",
+    "question_entities_events": "empty (A6 unavailable)",
+    "tie_break": "stable sort (-score, chunk_id)",
+    "embedding_cache": "disabled: cache-free scoring per call (cache failed identical-ranking verification)",
+    "ks": [
+      1,
+      3,
+      5
+    ],
+    "ms": [
+      5,
+      10,
+      20
+    ],
+    "ms_diagnostic": [
+      50
+    ],
+    "device": "cpu"
+  },
+  "results": {
+    "k=1": {
+      "questions": 1728,
+      "candidates": {
+        "mean": 34.14,
+        "median": 25.0,
+        "p90": 76.59999999999991,
+        "max": 201.0,
+        "zero": 41
+      },
+      "score_seconds_per_question": {
+        "mean": 0.3865,
+        "median": 0.326,
+        "p90": 0.8017,
+        "total": 667.8
+      },
+      "seed_recall": 0.1272,
+      "recall_before_filter": 0.3072,
+      "reachable_gold": {
+        "questions_with_any": 361,
+        "total_gold_items": 462
+      },
+      "recall_after_top_m": {
+        "m=5": 0.2207,
+        "m=10": 0.2519,
+        "m=20": 0.2767,
+        "m=50 (diag)": 0.3013
+      },
+      "retention_of_reachable_gold": {
+        "m=5": {
+          "micro": 0.4524,
+          "macro": 0.5124,
+          "any_reachable_kept": 0.5374
+        },
+        "m=10": {
+          "micro": 0.6212,
+          "macro": 0.6873,
+          "any_reachable_kept": 0.723
+        },
+        "m=20": {
+          "micro": 0.7922,
+          "macro": 0.8251,
+          "any_reachable_kept": 0.8421
+        },
+        "m=50 (diag)": {
+          "micro": 0.9545,
+          "macro": 0.9661,
+          "any_reachable_kept": 0.9751
+        }
+      },
+      "REFERENCE_adapter_order_retention": {
+        "m=5": {
+          "micro": 0.1732,
+          "macro": 0.2015,
+          "any_reachable_kept": 0.2105
+        },
+        "m=10": {
+          "micro": 0.3355,
+          "macro": 0.3732,
+          "any_reachable_kept": 0.3795
+        },
+        "m=20": {
+          "micro": 0.5909,
+          "macro": 0.6129,
+          "any_reachable_kept": 0.6233
+        },
+        "m=50": {
+          "micro": 0.8939,
+          "macro": 0.8998,
+          "any_reachable_kept": 0.9003
+        }
+      }
+    },
+    "k=3": {
+      "questions": 1728,
+      "candidates": {
+        "mean": 84.3,
+        "median": 73.0,
+        "p90": 157.0,
+        "max": 332.0,
+        "zero": 1
+      },
+      "score_seconds_per_question": {
+        "mean": 0.8505,
+        "median": 0.7378,
+        "p90": 1.5315,
+        "total": 1469.7
+      },
+      "seed_recall": 0.2402,
+      "recall_before_filter": 0.4564,
+      "reachable_gold": {
+        "questions_with_any": 431,
+        "total_gold_items": 543
+      },
+      "recall_after_top_m": {
+        "m=5": 0.3221,
+        "m=10": 0.3589,
+        "m=20": 0.392,
+        "m=50 (diag)": 0.4267
+      },
+      "retention_of_reachable_gold": {
+        "m=5": {
+          "micro": 0.3425,
+          "macro": 0.3693,
+          "any_reachable_kept": 0.3944
+        },
+        "m=10": {
+          "micro": 0.5193,
+          "macro": 0.5398,
+          "any_reachable_kept": 0.5661
+        },
+        "m=20": {
+          "micro": 0.6777,
+          "macro": 0.6876,
+          "any_reachable_kept": 0.7053
+        },
+        "m=50 (diag)": {
+          "micro": 0.8692,
+          "macro": 0.8625,
+          "any_reachable_kept": 0.877
+        }
+      },
+      "REFERENCE_adapter_order_retention": {
+        "m=5": {
+          "micro": 0.0994,
+          "macro": 0.107,
+          "any_reachable_kept": 0.1137
+        },
+        "m=10": {
+          "micro": 0.2302,
+          "macro": 0.2398,
+          "any_reachable_kept": 0.2483
+        },
+        "m=20": {
+          "micro": 0.4273,
+          "macro": 0.4209,
+          "any_reachable_kept": 0.4339
+        },
+        "m=50": {
+          "micro": 0.7366,
+          "macro": 0.7156,
+          "any_reachable_kept": 0.7262
+        }
+      }
+    },
+    "k=5": {
+      "questions": 1728,
+      "candidates": {
+        "mean": 128.06,
+        "median": 118.0,
+        "p90": 228.0,
+        "max": 445.0,
+        "zero": 0
+      },
+      "score_seconds_per_question": {
+        "mean": 1.2344,
+        "median": 1.1293,
+        "p90": 2.1461,
+        "total": 2133.1
+      },
+      "seed_recall": 0.2943,
+      "recall_before_filter": 0.5333,
+      "reachable_gold": {
+        "questions_with_any": 471,
+        "total_gold_items": 622
+      },
+      "recall_after_top_m": {
+        "m=5": 0.3655,
+        "m=10": 0.3991,
+        "m=20": 0.4379,
+        "m=50 (diag)": 0.4814
+      },
+      "retention_of_reachable_gold": {
+        "m=5": {
+          "micro": 0.2733,
+          "macro": 0.2969,
+          "any_reachable_kept": 0.3163
+        },
+        "m=10": {
+          "micro": 0.4212,
+          "macro": 0.4387,
+          "any_reachable_kept": 0.4692
+        },
+        "m=20": {
+          "micro": 0.59,
+          "macro": 0.6002,
+          "any_reachable_kept": 0.6242
+        },
+        "m=50 (diag)": {
+          "micro": 0.7588,
+          "macro": 0.7756,
+          "any_reachable_kept": 0.7983
+        }
+      },
+      "REFERENCE_adapter_order_retention": {
+        "m=5": {
+          "micro": 0.082,
+          "macro": 0.0902,
+          "any_reachable_kept": 0.0955
+        },
+        "m=10": {
+          "micro": 0.1897,
+          "macro": 0.2033,
+          "any_reachable_kept": 0.2144
+        },
+        "m=20": {
+          "micro": 0.3457,
+          "macro": 0.3539,
+          "any_reachable_kept": 0.3715
+        },
+        "m=50": {
+          "micro": 0.6254,
+          "macro": 0.616,
+          "any_reachable_kept": 0.6369
+        }
+      }
+    }
+  },
+  "rankings_sha256": "76f9aab70d952f70e6716b938df6fe06c4d3dd2fc6cb9c6a121f28a4103b6a1c",
+  "total_seconds": 4284.7,
+  "peak_rss_gb": 0.83
+}

@@ -1,0 +1,66 @@
+{
+ "verified_before_scoring": {
+  "baselines/run_baselines_heldout.py": "578cbc75a794c0fcc71ee99e65d406f2b833d2e285aa6d77cf3a85dc534caedf",
+  "evaluate()_source_sha256": "5fb337261f91b4ec0ee7c9c18605e39eea2f8c2cdd08b774e60e815303ce46d6",
+  "adaptive_traversal/traversal.py (normalize_text)": "4af109e9f12bf4157c14ef1d0dd06e95da9b8ab20d2a9b22d5cafdc436b0d244",
+  "analysis/integrity_checks.py": "6ba851e0b015163a560cfbf9e967d66d2ec9fbd4d79643c81e484db9f9bc4859",
+  "ANALYSIS_PLAN.md": "197ca5486a03a3a6d293b5e711a2d34cd686e398d13aeacacba7c913b229d6cf",
+  "integrity_rerun": "ALL_PASS (44 checks)"
+ },
+ "evaluator": "baselines/run_baselines_heldout.py::evaluate (imported unchanged)",
+ "primary_metric": "id_recall",
+ "diagnostic_only": [
+  "text_recall_diag",
+  "text_seed_recall_diag"
+ ],
+ "dropped_unread_fields": [
+  "eval"
+ ],
+ "populations": {
+  "TEST-1704": 1704,
+  "NEW-1654": 1654,
+  "SUB-300": 300
+ },
+ "rows": 70356,
+ "aggregates": 130,
+ "inputs_sha256_before": {
+  "experiments/runs/E1_slm_B4_new1654/results.jsonl": "df8ba182e096c5da83463f2fd4252adc1200a41c844d90417bd5067c69d4ad73",
+  "experiments/runs/E1_slm_B4_new1654/manifest.json": "ed38c9b5bdd37546af8c711847bcd6111527ea3cc202c22205e08fa8954f58d8",
+  "experiments/runs/E2_baselines_B8_test1704/results.jsonl": "65496f5e82780e2e97216f7d581a74213d5da22d7fef8afe97ec793a32bc85c2",
+  "experiments/runs/E2_baselines_B8_test1704/manifest.json": "83260f247489cc31c3c5a287a32c825a6d7961e08cee43678b9f2f6fa2b240dc",
+  "experiments/runs/E2r_random_B4_test1704/results.jsonl": "a0c191514fee19bb4ded7d15da50ceeb0aa5bf2bce2513a312eed82f67fb3003",
+  "experiments/runs/E2r_random_B4_test1704/manifest.json": "0299f5820d6285b483ed9624a7224c9af382f85b2c6271922686f75c28f6ea1d",
+  "experiments/runs/E2r8_random_B8_sub300/results.jsonl": "51a1c3b5bcf2713907868eb74f937d382c407ccbf6c34226cf4960b524af6e41",
+  "experiments/runs/E2r8_random_B8_sub300/manifest.json": "ff9139b16e4354d248b98fe901ba2bb59d5a7f7b01593763d6dac08ddec360ec",
+  "experiments/runs/E3_B1_slm_sub300/results.jsonl": "b8209d9fe5e3f2b44baadd102b21dc19584ebcc1d784e44af5748795b758e348",
+  "experiments/runs/E3_B1_slm_sub300/manifest.json": "e61986537c061ad984a1bdfd0d81c09c7e354b916adec272e87f669a42ece23d",
+  "experiments/runs/E3_B2_slm_sub300/results.jsonl": "87f5f36b5b678603d9e8fae2a2a37eb92e6a355ce1638088a0de9317a51d2eda",
+  "experiments/runs/E3_B2_slm_sub300/manifest.json": "87bfd76067ebd9e786e9d826c35b06eef6ef7135a33e930fc6e88edd4a4c8f8a",
+  "experiments/runs/E3_B8_slm_sub300/results.jsonl": "963bdfc2b771aac4fa03740f49b937dcc3f53a40098e2a7a0b5e780a6df7d60c",
+  "experiments/runs/E3_B8_slm_sub300/manifest.json": "84d93a1dafb47b7585c16660eec7aa7ba8b242e271bced7a8eeccdd1c6575158",
+  "experiments/runs/E4a_B4_nostop_test1704/results.jsonl": "13cb2a49add0cf8bae347b423af834692eb9409e3f7857c572ad996ad632b89c",
+  "experiments/runs/E4a_B4_nostop_test1704/manifest.json": "32c2b2048473a7a22586ce523f6c3bd05a8224eacda7d2910419c11c2fb1fe13",
+  "experiments/runs/E4a_B8_nostop_sub300/results.jsonl": "b25d2c2a7331ec12aa49c43a3d509d26da843a04525020c2032d681bcc8f5484",
+  "experiments/runs/E4a_B8_nostop_sub300/manifest.json": "98c4017e9fbe44fcddcd8d2e66d889a113173be79734ed897bc8bb8dc8acc34d",
+  "experiments/runs/E4b_nohistory_B4_sub300/results.jsonl": "377d275bfab110cc85aa07e8a7974bd2ae71109727c3af2ba794f6621949ddc1",
+  "experiments/runs/E4b_nohistory_B4_sub300/manifest.json": "68d56a2952fb02be21e2b70f4501c55c092140bef3445172aa5695024534ed4b",
+  "experiments/runs/E4c_nobudget_B8_sub300/results.jsonl": "6f54d0abce60d3b6f3dbbfaeeda7129bad0f47a766e12473d2821ad70061f301",
+  "experiments/runs/E4c_nobudget_B8_sub300/manifest.json": "4f749349a8f94d19143a45d8612d7fc65d0af8d0daf49c46b479ff275fa85649",
+  "adaptive_traversal/runs/heldout50_k3_m20_B4_v2/results.jsonl": "a12ad0eb0c05daadcfdc8d3b5482661469e15a45d249228433a25b895003daef",
+  "adaptive_traversal/runs/heldout50_k3_m20_B4_v2/steps.jsonl": "d35dcdd795f931c61aa5e00c4bd87d37493852c89b0a4c854f67799052a7e5ff",
+  "adaptive_traversal/runs/heldout50_k3_m20_B4_v2/summary.json": "4a0ecc53d38daf543e9371192dcc6023b6c7fa15d9b20120de6a41a22a26686b",
+  "seed_retrieval/runs/seeds_fusionA_top100_seed0_runA/seeds_top100.csv": "a53d2d1974ab7f3793b0d26db7793ac9399d738e9132f6cbe41a8a8dd0e5b7e5",
+  "experiments/question_sets.json": "32ebb25d6fe5ad755b221b7ea15df73ce7eb7e4a1044a52abe84fe62aff5678c",
+  "experiments/FROZEN.json": "b03749456ef8f6379b3149f0487896c7881310aee9c0644b417ab624bca21d6c"
+ },
+ "inputs_unchanged_after": true,
+ "score_py_sha256": "88371e5059ad007c849e58d120a583d8d9571520167cb2208340bedb5583d0c5",
+ "outputs_sha256": {
+  "aggregates.csv": "d6433f0e82f1ac51d9ec17d22c5518b9150d97b38620a7cebce484a1cd6222e7",
+  "aggregates.json": "730c318de1200a2c507a3432fd2dd30252643ec1595be21cdcfd22dbaf569e89",
+  "invariants.json": "5a86a6f8cd87349bc49cce72b1cc61e232856ba56c5a512f5c28cc49a6609d8a",
+  "per_question.csv": "46cfd171bf3de4ca39c4fb8f9a2d4670b18625575eafbe34ed1f97c5b395e15d",
+  "per_question.jsonl": "9d0ea737a684a1ee59cb9f8c38a889ac62f0a637f73c4ae30d1969b3b017a64f",
+  "question_info.jsonl": "d348a1b8d325c3b42e6e6c0dbc3ebe97e59e4c7540cb6fdd6269cc8712aa93f3"
+ }
+}

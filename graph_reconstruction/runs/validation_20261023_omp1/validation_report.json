@@ -1,0 +1,40 @@
+{
+  "checks": {
+    "L0_docs_only_load": true,
+    "V4_stored_embeddings_identical": true,
+    "V3_topic_embeddings": true,
+    "V6_hnsw_deterministic": true,
+    "V7_hnsw_recall": false,
+    "V1_float_features": true,
+    "V1_integer_features_exact": true
+  },
+  "nodes": {
+    "documents": 21742,
+    "tables": 0,
+    "indexing_filtered_rows": 21742
+  },
+  "V4_identical_count": 21742,
+  "V3_topic_cos_min": 0.9999997615814209,
+  "candidate_pairs": 3002534,
+  "V6_neighbor_lists_differing": 0,
+  "V7_hnsw_recall_at_200": 0.9976299999999999,
+  "V1_pairs_compared": 2000,
+  "V1_max_abs_diff": {
+    "content_similarity": 2.384185791015625e-07,
+    "topic_similarity": 2.384185788795179e-07,
+    "entity_relationship_overlap": 0.0
+  },
+  "V1_mismatches": {
+    "entity_count": 0,
+    "event_count": 0,
+    "edge_type": 0,
+    "orientation": 0
+  },
+  "V1_sample_entity_count_gt0": 263,
+  "patch_calls": {
+    "P1_calls": 0,
+    "P2_calls": 0
+  },
+  "elapsed_s": 94.2,
+  "ALL_PASS": false
+}

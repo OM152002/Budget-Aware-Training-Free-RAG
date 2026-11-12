@@ -1,0 +1,247 @@
+{
+  "1_fingerprints": {
+    "manifests_match_current": {
+      "PASS": true,
+      "mismatches": {
+        "E1_slm_B4_new1654": [],
+        "E2_baselines_B8_test1704": [],
+        "E2r_random_B4_test1704": [],
+        "E2r8_random_B8_sub300": [],
+        "E3_B1_slm_sub300": [],
+        "E3_B2_slm_sub300": [],
+        "E3_B8_slm_sub300": [],
+        "E4a_B4_nostop_test1704": [],
+        "E4a_B8_nostop_sub300": [],
+        "E4b_nohistory_B4_sub300": [],
+        "E4c_nobudget_B8_sub300": []
+      },
+      "runs": 11
+    },
+    "verify_frozen": {
+      "PASS": true,
+      "stdout": "frozen code verified"
+    },
+    "pilot50_code_hashes_match_FROZEN": {
+      "PASS": true,
+      "files": 5
+    },
+    "pilot50_config": {
+      "PASS": true
+    }
+  },
+  "2_question_sets": {
+    "run_order_equals_frozen_set": {
+      "E1_slm_B4_new1654": {
+        "PASS": true,
+        "set": "NEW-1654",
+        "n": 1654
+      },
+      "E2_baselines_B8_test1704": {
+        "PASS": true,
+        "set": "TEST-1704",
+        "n": 1704
+      },
+      "E2r_random_B4_test1704": {
+        "PASS": true,
+        "set": "TEST-1704",
+        "n": 1704
+      },
+      "E2r8_random_B8_sub300": {
+        "PASS": true,
+        "set": "SUB-300",
+        "n": 300
+      },
+      "E3_B1_slm_sub300": {
+        "PASS": true,
+        "set": "SUB-300",
+        "n": 300
+      },
+      "E3_B2_slm_sub300": {
+        "PASS": true,
+        "set": "SUB-300",
+        "n": 300
+      },
+      "E3_B8_slm_sub300": {
+        "PASS": true,
+        "set": "SUB-300",
+        "n": 300
+      },
+      "E4a_B4_nostop_test1704": {
+        "PASS": true,
+        "set": "TEST-1704",
+        "n": 1704
+      },
+      "E4a_B8_nostop_sub300": {
+        "PASS": true,
+        "set": "SUB-300",
+        "n": 300
+      },
+      "E4b_nohistory_B4_sub300": {
+        "PASS": true,
+        "set": "SUB-300",
+        "n": 300
+      },
+      "E4c_nobudget_B8_sub300": {
+        "PASS": true,
+        "set": "SUB-300",
+        "n": 300
+      }
+    },
+    "pilot50_records_equal_PILOT50_order": {
+      "PASS": true
+    },
+    "NEW_union_PILOT_equals_TEST_disjoint": {
+      "PASS": true
+    },
+    "SUB300_subset_of_TEST": {
+      "PASS": true,
+      "overlap_pilot50": 9
+    },
+    "DEV24_disjoint_from_every_run": {
+      "PASS": true
+    },
+    "M5_B4_covers_SUB300": {
+      "PASS": true,
+      "from_E1": 291,
+      "from_PILOT50": 9
+    },
+    "no_gold_field_in_experiment_runs": {
+      "PASS": true
+    }
+  },
+  "3_alignment": {
+    "slm_runs_seeds_chain_and_step1_topm_equal_M4": {
+      "PILOT-50 (M5 B4)": {
+        "PASS": true,
+        "n": 50,
+        "seeds_or_chain_bad": [],
+        "step1_topm_mismatch_vs_M4": [],
+        "questions_without_steps": []
+      },
+      "E1_slm_B4_new1654": {
+        "PASS": true,
+        "n": 1654,
+        "seeds_or_chain_bad": [],
+        "step1_topm_mismatch_vs_M4": [],
+        "questions_without_steps": []
+      },
+      "E3_B1_slm_sub300": {
+        "PASS": true,
+        "n": 300,
+        "seeds_or_chain_bad": [],
+        "step1_topm_mismatch_vs_M4": [],
+        "questions_without_steps": []
+      },
+      "E3_B2_slm_sub300": {
+        "PASS": true,
+        "n": 300,
+        "seeds_or_chain_bad": [],
+        "step1_topm_mismatch_vs_M4": [],
+        "questions_without_steps": []
+      },
+      "E3_B8_slm_sub300": {
+        "PASS": true,
+        "n": 300,
+        "seeds_or_chain_bad": [],
+        "step1_topm_mismatch_vs_M4": [],
+        "questions_without_steps": []
+      },
+      "E4a_B4_nostop_test1704": {
+        "PASS": true,
+        "n": 1704,
+        "seeds_or_chain_bad": [],
+        "step1_topm_mismatch_vs_M4": "n/a (E4a: steps checked via source runs)",
+        "questions_without_steps": []
+      },
+      "E4a_B8_nostop_sub300": {
+        "PASS": true,
+        "n": 300,
+        "seeds_or_chain_bad": [],
+        "step1_topm_mismatch_vs_M4": [],
+        "questions_without_steps": []
+      },
+      "E4b_nohistory_B4_sub300": {
+        "PASS": true,
+        "n": 300,
+        "seeds_or_chain_bad": [],
+        "step1_topm_mismatch_vs_M4": [],
+        "questions_without_steps": []
+      },
+      "E4c_nobudget_B8_sub300": {
+        "PASS": true,
+        "n": 300,
+        "seeds_or_chain_bad": [],
+        "step1_topm_mismatch_vs_M4": [],
+        "questions_without_steps": []
+      }
+    },
+    "E2_internal (M4 greedy chain, M1 prefix, M2 faithful/dedup)": {
+      "PASS": true,
+      "bad": [],
+      "n": 1704
+    },
+    "M3_chains_valid": {
+      "PASS": true,
+      "bad": []
+    },
+    "M3_step1_topm_equal_M4": {
+      "PASS": true,
+      "bad": []
+    },
+    "M3_B4_is_prefix_of_B8_on_SUB300": {
+      "PASS": true,
+      "bad": [],
+      "checked": 900
+    },
+    "M4_B4_heldout_run_is_prefix_of_E2_B8": {
+      "PASS": true,
+      "checked": 50
+    },
+    "M4_matched_heldout_run_is_prefix_of_E2_B8": {
+      "PASS": true,
+      "checked": 50
+    },
+    "M3_seed0_heldout_run_equals_E2r_seed0": {
+      "PASS": true,
+      "checked": 50
+    },
+    "A3_B4_vs_sources": {
+      "PASS": true,
+      "bad": [],
+      "reruns": 187
+    },
+    "A3_B8_vs_E3_B8": {
+      "PASS": true,
+      "bad": [],
+      "reruns": 60
+    }
+  },
+  "4_A2_truncation": {
+    "no_budget_prompt_identical_for_B_0_to_8": {
+      "PASS": true
+    },
+    "with_budget_prompt_differs (sanity)": {
+      "PASS": true
+    },
+    "no_digit_budget_line_when_disabled": {
+      "PASS": true
+    },
+    "note": "The fixed v2 SYSTEM prompt still says 'The remaining budget is a maximum, not a target' in A2; it carries no budget value, so it does not break truncation. A2 = 'no budget value', not 'no mention of budget'.",
+    "traverse_passes_only_remaining_budget_to_controller": {
+      "PASS": true
+    }
+  },
+  "5_evaluator_hashes": {
+    "baselines/run_baselines_heldout.py": "578cbc75a794c0fcc71ee99e65d406f2b833d2e285aa6d77cf3a85dc534caedf",
+    "evaluate()_source_sha256": "5fb337261f91b4ec0ee7c9c18605e39eea2f8c2cdd08b774e60e815303ce46d6",
+    "adaptive_traversal/traversal.py (normalize_text)": "4af109e9f12bf4157c14ef1d0dd06e95da9b8ab20d2a9b22d5cafdc436b0d244",
+    "normalize_text_is_frozen_file": {
+      "PASS": true
+    },
+    "analysis/integrity_checks.py": "6ba851e0b015163a560cfbf9e967d66d2ec9fbd4d79643c81e484db9f9bc4859",
+    "ANALYSIS_PLAN.md": "197ca5486a03a3a6d293b5e711a2d34cd686e398d13aeacacba7c913b229d6cf"
+  },
+  "ALL_PASS": true,
+  "n_checks": 44,
+  "failed": []
+}
